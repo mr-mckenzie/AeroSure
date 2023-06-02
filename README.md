@@ -15,7 +15,21 @@ A user should be able to:
 
 - See weather conditions a few hours around their flight arrival.
 
+- See the weather forecast for the duration of the travel.
+
 ## Advanced Extension
 
 - The user can have quick live visual feedback in their saved searches.
 
+- 
+
+## Setup
+
+Below is a step by step to setting up and running the app.
+
+- Step 1
+    Open the terminal
+
+- Step 2
+    Ensure you are in the desired folder:
+        check which directory you are in (pwd)
