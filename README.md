@@ -24,7 +24,7 @@ A user should be able to:
 ## Planning
 https://excalidraw.com/#json=gFAXxV6IM4G2Ryk9T1WFc,y3_SxipbUPSSiMBMHLBxeA
 
-## Setup
+<!-- ## Setup
 
 Below is a step by step to setting up and running the app.
 
@@ -33,4 +33,4 @@ Below is a step by step to setting up and running the app.
 
 - Step 2
     Ensure you are in the desired folder:
-        check which directory you are in (pwd)
+        check which directory you are in (pwd) -->
