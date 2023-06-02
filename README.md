@@ -21,7 +21,8 @@ A user should be able to:
 
 - The user can have quick live visual feedback in their saved searches.
 
-- 
+## Planning
+https://excalidraw.com/#json=gFAXxV6IM4G2Ryk9T1WFc,y3_SxipbUPSSiMBMHLBxeA
 
 ## Setup
 
