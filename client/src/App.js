@@ -6,6 +6,8 @@ import DisplayContainer from "./containers/DisplayContainer";
 import FooterContainer from "./containers/FooterContainer";
 import styled from 'styled-components'
 import Home from "./pages/Home";
+import About from "./pages/About";
+import ExternalServices from "./services/ExternalServices";
 
 function App() {
 
@@ -16,11 +18,10 @@ function App() {
   const [savedSearch, setSavedSearch] = useState([])
   const [savedSearchList, setSavedSearchList] = useState([])
 
-// useEffect(()=>{
-// fetch("https://geocoding-api.open-meteo.com/v1/search?name=Edinburgh&count=10&language=en&format=json")
-// .then(data => data.json())
-// .then(data => setReturnData(data.results))
-// },[])
+useEffect(()=>{
+  ExternalServices.getGeoList()
+  .then(data => setGeoList(data.results))
+},[])
 
   // const parsed = returnData.map((item) => {
   //   return <p>{item.name}</p>
@@ -29,9 +30,8 @@ function App() {
     <Router>
     <NavContainer/>
       <Routes>
-        <Route path="/" element={<Home/>}>
-
-        </Route>
+        <Route path="/" element={<Home geoList={geoList} />} />
+        <Route path="/about" element={<About/>} />
       </Routes>
       <FooterContainer />
     </Router>

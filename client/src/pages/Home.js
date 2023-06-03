@@ -1,11 +1,11 @@
 import DisplayContainer from "../containers/DisplayContainer"
 import FormContainer from "../containers/FormContainer"
 
-const Home = () => {
+const Home = ({geoList}) => {
 
     return (
         <>
-            <FormContainer/>
+            <FormContainer geoList={geoList}/>
             <DisplayContainer/>        
         </>
     )
