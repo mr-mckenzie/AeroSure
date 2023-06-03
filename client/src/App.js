@@ -17,10 +17,9 @@ function App() {
   const [savedSearchList, setSavedSearchList] = useState([])
 
 useEffect(()=>{
-  ExternalServices.getGeoList("aaa")
+  console.log("USE EFFECT RUNNING")
+  ExternalServices.getGeoList()
   .then(data => setGeoList(data.results))
-  
-  
 },[])
 
   // const parsed = returnData.map((item) => {

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import ExternalServices from "../services/ExternalServices"
 
-const FormContainer = ({geoList, setGeoList}) => {
+const FormContainer = ({geoList = [{results:{name:"Not Found"}}], setGeoList}) => {
 
     const [search, setSearch] = useState({
         departureString: "",
@@ -13,6 +13,18 @@ const FormContainer = ({geoList, setGeoList}) => {
     })
 
     let parsedGeoList
+    console.log("This is geoList:", geoList)
+
+    let name 
+
+    if (geoList) {
+        name = "truthy"
+    } else {
+        name = "falsey"
+    }
+
+    console.log("GeoList is :", name) 
+
     if (geoList) {
     parsedGeoList = geoList.map( geoLocation => {
         const opt = `${geoLocation.name} - ${geoLocation.country} - ${geoLocation.admin1}`
@@ -24,6 +36,7 @@ const FormContainer = ({geoList, setGeoList}) => {
         newSearch[event.target.name] = event.target.value
         setSearch(newSearch)
         if (event.target.name === "departureString" && event.target.value.length > 2) {
+            console.log("LINE 39 IS RUNNING")
             const newGeoList = ExternalServices.getGeoList(event.target.value)
             setGeoList(newGeoList)
         }

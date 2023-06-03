@@ -5,8 +5,16 @@ const baseURL = 'http://localhost:9000/api/search/';
 const ExternalServices =  {
 
   getGeoList (location) {
-    return fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=10&language=en&format=json`)
+    
+    const resultOfFetch = fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=10&language=en&format=json`)
     .then(data => data.json())
+    .catch((error) => {
+      console.error("Error fetching geoList:", error);})
+    if (! resultOfFetch.results) {
+      return resultOfFetch
+    } else {
+      return Object.assign( resultOfFetch, {"results": []})
+    }
     
   }
 //   getBookings() {
