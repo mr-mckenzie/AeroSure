@@ -4,9 +4,10 @@ const baseURL = 'http://localhost:9000/api/search/';
 
 const ExternalServices =  {
 
-  getGeoList () {
-    return fetch("https://geocoding-api.open-meteo.com/v1/search?name=Edinburgh&count=10&language=en&format=json")
+  getGeoList (location) {
+    return fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=10&language=en&format=json`)
     .then(data => data.json())
+    
   }
 //   getBookings() {
 //     return fetch(baseURL)

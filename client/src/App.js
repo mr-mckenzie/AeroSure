@@ -1,8 +1,6 @@
 import { useEffect,useState } from "react";
 import {BrowserRouter as Router, Routes,Route} from "react-router-dom"
 import NavContainer from "./containers/NavContainer";
-import FormContainer from "./containers/FormContainer";
-import DisplayContainer from "./containers/DisplayContainer";
 import FooterContainer from "./containers/FooterContainer";
 import styled from 'styled-components'
 import Home from "./pages/Home";
@@ -19,8 +17,10 @@ function App() {
   const [savedSearchList, setSavedSearchList] = useState([])
 
 useEffect(()=>{
-  ExternalServices.getGeoList()
+  ExternalServices.getGeoList("aaa")
   .then(data => setGeoList(data.results))
+  
+  
 },[])
 
   // const parsed = returnData.map((item) => {
@@ -30,7 +30,7 @@ useEffect(()=>{
     <Router>
     <NavContainer/>
       <Routes>
-        <Route path="/" element={<Home geoList={geoList} />} />
+        <Route path="/" element={<Home geoList={geoList} setGeoList={setGeoList}/>} />
         <Route path="/about" element={<About/>} />
       </Routes>
       <FooterContainer />

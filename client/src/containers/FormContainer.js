@@ -1,38 +1,41 @@
 import { useState } from "react"
+import ExternalServices from "../services/ExternalServices"
 
-const FormContainer = ({geoList}) => {
+const FormContainer = ({geoList, setGeoList}) => {
 
     const [search, setSearch] = useState({
         departureString: "",
-        depatureDate: null,
-        departureTime: null,
+        departureDate: "",
+        departureTime: "",
         arrivalString: "",
-        arrivalDate: null,
-        arrivalTime: null
+        arrivalDate: "",
+        arrivalTime: ""
     })
 
-
-   
-
-    const parsedGeoList = geoList.map( geoLocation => {
+    let parsedGeoList
+    if (geoList) {
+    parsedGeoList = geoList.map( geoLocation => {
         const opt = `${geoLocation.name} - ${geoLocation.country} - ${geoLocation.admin1}`
         return <option key={geoLocation.id} value={opt} /> 
-    } )
+    } )}
 
-    const handleDepartureChange = (event) => {
-        
-        const newSearch = {...search,departureString:event.target.value}
+    const onChange = (event) => {
+        const newSearch = Object.assign({}, search)
+        newSearch[event.target.name] = event.target.value
         setSearch(newSearch)
-    }
-    const handleArrivalChange = (event) => {
-        const newSearch = {...search,arrivalString:event.target.value}
-        setSearch(newSearch)
+        if (event.target.name === "departureString" && event.target.value.length > 2) {
+            const newGeoList = ExternalServices.getGeoList(event.target.value)
+            setGeoList(newGeoList)
+        }
     }
 
 // handle submit
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault()
         //set the state search
-        
+        console.log(event.target.value)
+
+
         return null
     }
     
@@ -43,25 +46,25 @@ const FormContainer = ({geoList}) => {
         <form onSubmit={handleSubmit}>
             <div className="departure-container">
                 <label htmlFor="departure-name">From:</label>
-                <input list="departure_name"id="depature-name" value={search.departureString} onChange={handleDepartureChange} placeholder="type here"/>
+                <input list="departure_name" name="departureString" id="departure-name" value={search.departureString} onChange={onChange} placeholder="type here"/>
                 <datalist type="list"id="departure_name">
                     {parsedGeoList}
                 </datalist>
                 <label htmlFor="departure-date">Date:</label>
-                <input type="date" id="departure-date"/>
+                <input type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange}/>
                 <label htmlFor="departure-time">Time:</label>
-                <input type="time" id="departure-time"/>
+                <input type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange}/>
             </div>
             <div className="arrival-container">
             <label htmlFor="arrival-name">To:</label>
-                <input list="arrival_name"id="arrival-name" value={search.arrivalString} onChange={handleArrivalChange} placeholder="type here"/>
+                <input list="arrival_name"id="arrival-name" name="arrivalString" value={search.arrivalString} onChange={onChange} placeholder="type here"/>
                 <datalist type="list"id="arrival_name">
                     {parsedGeoList}
                 </datalist>
                 <label htmlFor="arrival-date">Date:</label>
-                <input type="date" id="arrival-date"/>
+                <input type="date" id="arrival-date" value={search.arrivalDate} onChange={onChange}/>
                 <label htmlFor="arrival-time">Time:</label>
-                <input type="time" id="arrival-time"/>
+                <input type="time" id="arrival-time" value={search.arrivalTime} onChange={onChange}/>
             </div>
             <input type="submit" value="Aerosure?"/>
         </form>
@@ -74,3 +77,5 @@ const FormContainer = ({geoList}) => {
 
 
 export default FormContainer
+
+
