@@ -14,14 +14,7 @@ const ExternalServices =  {
       .catch((error) => {
       })
       
-    //   if ((resultOfFetch).then()){
       return resultOfFetch
-    // } else {
-    //   console.log("NOPE")
-    // }
-    // } else {
-    //   return {"results": [{id:"999999999", name:"no results"}]}
-    // }
 }},
 
    getDepartureForecast (departureObj) {

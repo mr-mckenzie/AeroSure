@@ -13,25 +13,36 @@ function App() {
   const [geoList, setGeoList] = useState([]) //returns from GEO API
   const [geoObj, setGeoObj] = useState([]) // returns from form submit
   const [departureForecast, setDepartureForecast] = useState([]) // returns from METEOAPI
-  const [arrivalForecast, setArrivalForecast] = useState([]) 
+  const [arrivalForecast, setArrivalForecast] = useState([]) // TODO: consider refactoring this into one bit of state with the above if they are ALWAYS being updated at the same time.
   const [savedSearch, setSavedSearch] = useState([])
   const [savedSearchList, setSavedSearchList] = useState([])
 
+
 useEffect(()=>{
+  //may need to use promise.all (waits for all promises to be complete to do the thing it's meant to do)
+  //TODO: Consider refactoring to one function 
   ExternalServices.getDepartureForecast(geoObj)
   .then(res => setDepartureForecast(res))
   ExternalServices.getArrivalForecast(geoObj)
   .then(res => setArrivalForecast(res))
+  const compliedDepatureForecast = departureForecast.hourly.time.map((hour,index) => {
+    return {hour : hour, temp : departureForecast.hourly.temperature_2m[index], code : departureForecast.weathercode[index] }
+  })
 },[geoObj])
 
-  // const parsed = returnData.map((item) => {
-  //   return <p>{item.name}</p>
-  // })
+
   return (
     <Router>
     <NavContainer/>
       <Routes>
-        <Route path="/" element={<Home geoList={geoList} setGeoObj={setGeoObj} setGeoList={setGeoList}/>} />
+        <Route path="/" element={<Home 
+        geoList={geoList}
+        departureForecast={departureForecast}
+        arrivalForecast={arrivalForecast}
+        geoObj={geoObj}
+        setGeoObj={setGeoObj} 
+        setGeoList={setGeoList}
+        />} />
         <Route path="/about" element={<About/>} />
       </Routes>
       <FooterContainer />

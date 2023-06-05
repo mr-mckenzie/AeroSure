@@ -123,8 +123,6 @@ const FormContainer = ({geoList, setGeoList, setGeoObj}) => {
             arrivalLatitude: "",
             arrivalLongitude: "",
         })
-        //Need to call new API here?
-        return (null)
     }
 //console.log({parsedGeoList})
     return (
