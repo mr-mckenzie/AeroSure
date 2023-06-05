@@ -16,11 +16,11 @@ function App() {
   const [savedSearch, setSavedSearch] = useState([])
   const [savedSearchList, setSavedSearchList] = useState([])
 
-useEffect(()=>{
-  console.log("USE EFFECT RUNNING")
-  ExternalServices.getGeoList("Start")
-  .then(data => setGeoList(data))
-},[])
+// useEffect(()=>{
+//   console.log("USE EFFECT RUNNING")
+//   ExternalServices.getGeoList("xxxxx")
+//   .then(data => setGeoList(data))
+// },[])
 
   // const parsed = returnData.map((item) => {
   //   return <p>{item.name}</p>
