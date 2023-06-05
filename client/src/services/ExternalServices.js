@@ -23,6 +23,13 @@ const ExternalServices =  {
       return {"results": [{id:"999999999", name:"no results"}]}
     }
 }
+
+  // getForecast ( obj ) {
+  //   fetch("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m")
+  // }
+
+
+
 }
 
 export default ExternalServices;

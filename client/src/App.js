@@ -29,7 +29,7 @@ function App() {
     <Router>
     <NavContainer/>
       <Routes>
-        <Route path="/" element={<Home geoList={geoList} setGeoList={setGeoList}/>} />
+        <Route path="/" element={<Home geoList={geoList} setGeoObj={setGeoObj} setGeoList={setGeoList}/>} />
         <Route path="/about" element={<About/>} />
       </Routes>
       <FooterContainer />
