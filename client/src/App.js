@@ -18,8 +18,8 @@ function App() {
 
 useEffect(()=>{
   console.log("USE EFFECT RUNNING")
-  ExternalServices.getGeoList()
-  .then(data => setGeoList(data.results))
+  ExternalServices.getGeoList("Start")
+  .then(data => setGeoList(data))
 },[])
 
   // const parsed = returnData.map((item) => {

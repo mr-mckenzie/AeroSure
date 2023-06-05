@@ -5,9 +5,13 @@ const FormContainer = ({geoList = [{results:{name:"Not Found"}}], setGeoList}) =
 
     const [search, setSearch] = useState({
         departureString: "",
+        departureLatitude: "",
+        departureLongitude: "",
         departureDate: "",
         departureTime: "",
         arrivalString: "",
+        arrivalLatitude: "",
+        arrivalLongitude: "",
         arrivalDate: "",
         arrivalTime: ""
     })
@@ -24,22 +28,35 @@ const FormContainer = ({geoList = [{results:{name:"Not Found"}}], setGeoList}) =
     }
 
     console.log("GeoList is :", name) 
+    console.log("GeoList type is:", typeof(GeoList))
 
-    if (geoList) {
+    if (Array.isArray(geoList)) {
     parsedGeoList = geoList.map( geoLocation => {
         const opt = `${geoLocation.name} - ${geoLocation.country} - ${geoLocation.admin1}`
-        return <option key={geoLocation.id} value={opt} /> 
+        return <option key={geoLocation.id} value={geoLocation.name} latitude={geoLocation.latitude} longitude={geoLocation.longitude}>{opt}</option> 
     } )}
 
     const onChange = (event) => {
         const newSearch = Object.assign({}, search)
+        console.log("EVENT TARGET VALUE:", event.target.value)
         newSearch[event.target.name] = event.target.value
-        setSearch(newSearch)
+        console.log("new search:", newSearch)
+
         if (event.target.name === "departureString" && event.target.value.length > 2) {
-            console.log("LINE 39 IS RUNNING")
+            console.log("DEPARTURE STRING IF IS RUNNING, latitude:", event.target.longitude, "longitude:", event.target.latitude)
             const newGeoList = ExternalServices.getGeoList(event.target.value)
-            setGeoList(newGeoList)
+            newGeoList.then(resultofGetGeoList => setGeoList(resultofGetGeoList))
+            newSearch["departureLatitude"] = event.target.latitude
+            newSearch["departureLongitude"] = event.target.longitude
         }
+        if (event.target.name === "arrivalString" && event.target.value.length > 2) {
+            console.log("ARRIVAL STRING IF IS RUNNING, latitude:", event.target.latitude, "longitude:", event.target.longitude)
+            const newGeoList = ExternalServices.getGeoList(event.target.value)
+            newGeoList.then(resultofGetGeoList => setGeoList(resultofGetGeoList))
+            newSearch["arrivalLatitude"] = event.target.latitude
+            newSearch["arrivalLongitude"] = event.target.longitude
+        }
+        setSearch(newSearch)
     }
 
 // handle submit
