@@ -11,16 +11,18 @@ function App() {
 
   const [formObj, setFormObj] = useState([]) //returns from form submit
   const [geoList, setGeoList] = useState([]) //returns from GEO API
-  const [geoObj, setGeoObj] = useState([]) // selected from geoList dropdown
-  const [forecast, setForecast] = useState([]) // returns from METEOAPI
+  const [geoObj, setGeoObj] = useState([]) // returns from form submit
+  const [departureForecast, setDepartureForecast] = useState([]) // returns from METEOAPI
+  const [arrivalForecast, setArrivalForecast] = useState([]) 
   const [savedSearch, setSavedSearch] = useState([])
   const [savedSearchList, setSavedSearchList] = useState([])
 
-// useEffect(()=>{
-//   console.log("USE EFFECT RUNNING")
-//   ExternalServices.getGeoList("xxxxx")
-//   .then(data => setGeoList(data))
-// },[])
+useEffect(()=>{
+  ExternalServices.getDepartureForecast(geoObj)
+  .then(res => setDepartureForecast(res))
+  ExternalServices.getArrivalForecast(geoObj)
+  .then(res => setArrivalForecast(res))
+},[geoObj])
 
   // const parsed = returnData.map((item) => {
   //   return <p>{item.name}</p>

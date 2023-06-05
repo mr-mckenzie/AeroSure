@@ -14,22 +14,25 @@ const ExternalServices =  {
       .catch((error) => {
       })
       
-      if ((resultOfFetch).then()){
+    //   if ((resultOfFetch).then()){
       return resultOfFetch
-    } else {
-      console.log("NOPE")
-    }
-    } else {
-      return {"results": [{id:"999999999", name:"no results"}]}
-    }
-}
+    // } else {
+    //   console.log("NOPE")
+    // }
+    // } else {
+    //   return {"results": [{id:"999999999", name:"no results"}]}
+    // }
+}},
 
-  // getForecast ( obj ) {
-  //   fetch("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m")
-  // }
+   getDepartureForecast (departureObj) {
+    const departureForecast = fetch(`https://api.open-meteo.com/v1/forecast?latitude=${departureObj.departureLatitude}&longitude=${departureObj.departureLongitude}&hourly=temperature_2m,weathercode`)
+    .then(data => data.json())
+    return departureForecast},
 
-
-
+   getArrivalForecast (arrivalObj) {
+    const arrivalForecast = fetch(`https://api.open-meteo.com/v1/forecast?latitude=${arrivalObj.arrivalLatitude}&longitude=${arrivalObj.arrivalLongitude}&hourly=temperature_2m,weathercode`)
+    .then(data => data.json())
+    return arrivalForecast}
 }
 
 export default ExternalServices;
