@@ -12,12 +12,22 @@ const createRouter = require('./helpers/create_router.js');
 MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
   .then((client) => {
     const db = client.db('user_searches');
-    const searchCollection = db.collection('searches');
+    const searchCollection = db.collection('flights');
     const searchRouter = createRouter(searchCollection);
 
     app.post('/api/search', (req, res) => {
       const newData = req.body;
-      if (newData.hasOwnProperty("departureLocation") && newData.hasOwnProperty("departureDate") && newData.hasOwnProperty("departureHour")) {
+      if (newData.hasOwnProperty("departureName") && 
+          newData.hasOwnProperty("departureDate") && 
+          newData.hasOwnProperty("departureTime") && 
+          newData.hasOwnProperty("departureLatitude") && 
+          newData.hasOwnProperty("departureLongitude") && 
+          newData.hasOwnProperty("arrivalName") && 
+          newData.hasOwnProperty("arrivalDate") && 
+          newData.hasOwnProperty("arrivalTime") && 
+          newData.hasOwnProperty("arrivalLatitude") && 
+          newData.hasOwnProperty("arrivalLongitude")
+          ) {
         searchCollection
           .insertOne(newData)
           .then((result) => {
@@ -30,7 +40,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
           });
       } else {
         res.status(400);  // bad request
-        res.send("Please make sure the form is fully filled.");
+        res.send("Please make sure all fields in the form have been completed.");
       }
     });
 
@@ -39,5 +49,5 @@ MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
   .catch(console.error);
 
 app.listen(9000, function() {
-  console.log(`Hotel server running on port ${this.address().port}`);
+  console.log(`Saved Flight server running on port ${this.address().port}`);
 });
