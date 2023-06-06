@@ -43,6 +43,7 @@ function App() {
     .then( newForecast => {
       let compiledDepartureForecast
       let compiledArrivalForecast
+      //ISSUE HERE V
         compiledDepartureForecast = newForecast.departure.time.map((hour,index) => {
           return {hour : hour, temp : newForecast.departure.temperature_2m[index], code : newForecast.departure.weathercode[index] }})
         compiledArrivalForecast = newForecast.arrival.time.map((hour,index) => {

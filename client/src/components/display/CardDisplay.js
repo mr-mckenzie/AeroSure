@@ -1,50 +1,36 @@
-import BasicDisplay from "./BasicDisplay"
-import ChanceDisplay from "./ChanceDisplay"
 
-const CardDisplay = ({slicedArrivals, slicedDepartures, geoObj}) => {
+import styled from "styled-components"
 
-    const weatherCodes = [ //make sure to make a new weathercodes file!!!
-        {code: 0, description: "clear sky" , severity: 1},
-        {code: 1, description: "mainly clear", severity: 1},
-        {code: 2, description: "partly cloudy", severity: 1},
-        {code: 3, description: "overcast", severity: 1},
-        {code: 45, description: "fog", severity: 2},
-        {code: 48, description: "depositing rime fog", severity: 2},
-        {code: 51, description: "light drizzle", severity: 1},
-        {code: 53, description: "moderate drizzle", severity: 1},
-        {code: 55, description: "intense drizzle", severity: 1},
-        {code: 56, description: "light freezing drizzle", severity: 2},
-        {code: 57, description: "intense frezzing drizzle", severity: 3},
-        {code: 61, description: "slight rain", severity: 1},
-        {code: 63, description: "moderate rain", severity: 1},
-        {code: 65, description: "heavy rain", severity: 2},
-        {code: 66, description: "light reezing rain", severity: 3},
-        {code: 67, description: "heavy freezing rain", severity: 3},
-        {code: 71, description: "slight snowfall", severity: 2},
-        {code: 73, description: "moderate snowfall", severity: 2},
-        {code: 75, description: "heavy snowfall", severity: 3},
-        {code: 77, description: "snow grains", severity: 2},
-        {code: 80, description: "slight rain showers", severity: 1},
-        {code: 81, description: "moderate rain showers", severity: 1},
-        {code: 82, description: "violent rain showers", severity: 2},
-        {code: 85, description: "slight snow showers", severity: 2},
-        {code: 86, description: "heavy snow showers", severity: 3},
-        {code: 95, description: "thunderstorm", severity: 3},
-        {code: 96, description: "thunderstorm with slight hail", severity: 3},
-        {code: 99, description: "thunderstorm with heavy hail", severity: 3}
-    ]
+const CardDisplay = ({weather}) => {
 
-    const matchDepartureCode = weatherCodes.find(element => element.code === slicedDepartures[3].code)
-    console.log(matchDepartureCode)
+
+
+        //checks the total severity for the 3 hours prior do hour
+    const checkPrevHours = weather.slice(0,3).reduce((total,element)=>total+element.severity,0)
+    //const checkArrPrevHours = arrivalsWithWeathercodes.slice(0,3).reduce((total,element)=>total+element.severity,0)
+
+    
+
 
     return (
-        <div id="departure-container">
-        <div className="display-card">
-        <BasicDisplay/>
-        <ChanceDisplay/>
-        </div>
-        </div>
+        <CardContainer id="card-container">
+            <div id="basic-information">
+            <img src="./images/"/>
+            <p>{weather[3].description}</p>
+            <p>{weather[3].temp}</p>
+            </div>
+            <div id="chance-display">
+            <p>{weather[3].hour}</p>
+            </div>
+        </CardContainer>
+  
     )
+    
 }
+
+const CardContainer = styled.div`
+border:solid thin black;
+display:flex;
+`
 
 export default CardDisplay
