@@ -1,12 +1,12 @@
 import DisplayContainer from "../containers/DisplayContainer"
 import FormContainer from "../containers/FormContainer"
 
-const Home = ({geoList, setGeoList, setGeoObj,arrivalForecast,departureForecast,geoObj}) => {
+const Home = ({geoList, setGeoList, setGeoObj,forecast,geoObj,runForecast}) => {
 
     return (
         <>
-            <FormContainer geoList={geoList} setGeoList={setGeoList} setGeoObj={setGeoObj}/>
-            <DisplayContainer geoObj={geoObj} arrivalForecast={arrivalForecast} departureForecast={departureForecast}/>        
+            <FormContainer runForecast={runForecast} geoList={geoList} setGeoList={setGeoList} setGeoObj={setGeoObj}/>
+            <DisplayContainer geoObj={geoObj} forecast={forecast} />        
         </>
     )
 }

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import ExternalServices from "../services/ExternalServices"
 
-const FormContainer = ({geoList, setGeoList, setGeoObj}) => {
+const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
 
     const [search, setSearch] = useState({
         departureString: "",
@@ -34,7 +34,7 @@ const FormContainer = ({geoList, setGeoList, setGeoObj}) => {
                 const opt = `${geoLocation.name} - ${geoLocation.country} - ${(geoLocation.admin1 || geoLocation.admin2) || null}`
                 return <option key={geoLocation.id} value={geoLocation.id} > {opt} </option> 
         })}
-        console.log("THIS IS RESULT OF MAP:", resultOfMap)
+
     return resultOfMap}
     // onClick={()=>handleClick(geoLocation)}
 
@@ -123,8 +123,10 @@ const FormContainer = ({geoList, setGeoList, setGeoObj}) => {
             arrivalLatitude: "",
             arrivalLongitude: "",
         })
+
+        runForecast(newGeoObj)
     }
-//console.log({parsedGeoList})
+    
     return (
         <form onSubmit={handleSubmit}>
             <div className="departure-container">
@@ -152,9 +154,9 @@ const FormContainer = ({geoList, setGeoList, setGeoObj}) => {
                 :
                 null}
                 <label htmlFor="arrival-date">Date:</label>
-                <input type="date" id="arrival-date" value={search.arrivalDate} onChange={onChange}/>
+                <input type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange}/>
                 <label htmlFor="arrival-time">Time:</label>
-                <input type="time" id="arrival-time" value={search.arrivalTime} onChange={onChange}/>
+                <input type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange}/>
             </div>
             <input type="submit" value="Aerosure?"/>
         </form>

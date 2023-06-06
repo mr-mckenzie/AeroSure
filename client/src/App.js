@@ -2,33 +2,63 @@ import { useEffect,useState } from "react";
 import {BrowserRouter as Router, Routes,Route} from "react-router-dom"
 import NavContainer from "./containers/NavContainer";
 import FooterContainer from "./containers/FooterContainer";
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import Home from "./pages/Home";
 import About from "./pages/About";
 import ExternalServices from "./services/ExternalServices";
 
 function App() {
 
-  const [formObj, setFormObj] = useState([]) //returns from form submit
   const [geoList, setGeoList] = useState([]) //returns from GEO API
-  const [geoObj, setGeoObj] = useState([]) // returns from form submit
-  const [departureForecast, setDepartureForecast] = useState([]) // returns from METEOAPI
-  const [arrivalForecast, setArrivalForecast] = useState([]) // TODO: consider refactoring this into one bit of state with the above if they are ALWAYS being updated at the same time.
+  const [geoObj, setGeoObj] = useState({
+    departureLongitude:10.00,
+    departureLatitude:10.00,
+    arrivalLongitude:10.00,
+    arrivalLatitude:10.00
+  }) // returns from form submit
+
   const [savedSearch, setSavedSearch] = useState([])
   const [savedSearchList, setSavedSearchList] = useState([])
 
+  const [rawForecast,setRawForecast] = useState({
+    departure:{},
+    arrival:{},
+  }) // returns from METEOAPI
 
-useEffect(()=>{
-  //may need to use promise.all (waits for all promises to be complete to do the thing it's meant to do)
-  //TODO: Consider refactoring to one function 
-  ExternalServices.getDepartureForecast(geoObj)
-  .then(res => setDepartureForecast(res))
-  ExternalServices.getArrivalForecast(geoObj)
-  .then(res => setArrivalForecast(res))
-  const compliedDepatureForecast = departureForecast.hourly.time.map((hour,index) => {
-    return {hour : hour, temp : departureForecast.hourly.temperature_2m[index], code : departureForecast.weathercode[index] }
+  const [forecast,setForecast] = useState({
+      departure:{},
+      arrival:{},
   })
-},[geoObj])
+
+ const runForecast = (()=>{
+
+    ExternalServices.getForecast(geoObj)
+    .then(res => {
+      let newForecast ={
+        departure:res[0].hourly,
+        arrival:res[1].hourly
+      }
+      setRawForecast(newForecast)
+    return newForecast})
+    .then( newForecast => {
+      let compiledDepartureForecast
+      let compiledArrivalForecast
+        compiledDepartureForecast = newForecast.departure.time.map((hour,index) => {
+          return {hour : hour, temp : newForecast.departure.temperature_2m[index], code : newForecast.departure.weathercode[index] }})
+        compiledArrivalForecast = newForecast.arrival.time.map((hour,index) => {
+          return {hour : hour, temp : newForecast.arrival.temperature_2m[index], code : newForecast.arrival.weathercode[index] }})
+      
+      
+      setForecast({
+        departure:compiledDepartureForecast,
+        arrival:compiledArrivalForecast})
+    })
+  })
+
+
+
+  
+
 
 
   return (
@@ -37,11 +67,11 @@ useEffect(()=>{
       <Routes>
         <Route path="/" element={<Home 
         geoList={geoList}
-        departureForecast={departureForecast}
-        arrivalForecast={arrivalForecast}
+        forecast={forecast}
         geoObj={geoObj}
         setGeoObj={setGeoObj} 
         setGeoList={setGeoList}
+        runForecast={runForecast}
         />} />
         <Route path="/about" element={<About/>} />
       </Routes>
