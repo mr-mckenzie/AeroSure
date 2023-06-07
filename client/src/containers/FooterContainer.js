@@ -1,7 +1,11 @@
+import "./FooterContainer.css"
+
 const FooterContainer = () => {
 
     return (
-        <p>© 2023 Mahzabin, Daniel & Michael.</p>
+        <div className="footer-container">
+        <p className="footer-text">© 2023 Mahzabin, Daniel & Michael.</p>
+        </div>
     )
 }
 

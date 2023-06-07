@@ -1,9 +1,9 @@
 
-body  {
-    background-image: url("./skybackground.jpg");
+.display-container  {
+    background-image: url("./betterSky.jpg");
   background-size:cover;
-        -webkit-animation: slidein 100s;
-        animation: slidein 100s;
+        -webkit-animation: slidein 20s;
+        animation: slidein 20s;
 
         -webkit-animation-fill-mode: forwards;
         animation-fill-mode: forwards;
@@ -16,13 +16,13 @@ body  {
 }
 
 @-webkit-keyframes slidein {
-from {background-position: top; background-size:1000px; }
-to {background-position: -100px 0px;background-size:750px;}
+from {background-position: top; background-size:1600px; }
+to {background-position: -20px 0px;background-size:1300px;}
 }
 
 @keyframes slidein {
-from {background-position: top;background-size:1000px; }
-to {background-position: -100px 0px;background-size:750px;}
+from {background-position: top;background-size:1600px; }
+to {background-position: -20px 0px;background-size:1300px;}
 
 }
 

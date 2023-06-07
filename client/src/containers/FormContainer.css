@@ -43,12 +43,28 @@
     height: 2.5rem;
     align-self: center;
     margin-left: 10px;
+    border-radius: 9px;
+    border: none;
+    background-color: rgb(23, 180, 175);
+    color: white;
 }
-
+.form-button:hover{
+    background-color: aquamarine;
+    background-color: rgb(25, 200, 194);
+}
 .form-input {
     padding: 10px;
 }
 
 .submit-save-container {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+.submit-container {
+    
+}
+.form-save {
+    color: white;
 }

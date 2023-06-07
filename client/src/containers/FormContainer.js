@@ -203,9 +203,14 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSear
             </div>
             </div>
             <div className="submit-save-container">
+            <div className="submit-container">
+                <input className="form-button" type="submit" value="Aerosure?"/>
+            </div>
+            <div className="form-save">
                 <label htmlFor="save-search">Save</label>
                 <input id="save-search" name="save" type="checkbox" value={saveSearchChecked} checked={saveSearchChecked} onChange={onChange}></input>
-                <input className="form-button" type="submit" value="Aerosure?"/>
+            </div>
+
             </div>
         </form>
     )

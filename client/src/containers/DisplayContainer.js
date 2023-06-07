@@ -1,6 +1,7 @@
 import CardDisplay from "../components/display/CardDisplay"
 import styled from "styled-components"
-
+import "./background.css"
+import "./NavContainer.css"
 const DisplayContainer = ({forecast,geoObj}) => {
 
 
