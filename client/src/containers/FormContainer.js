@@ -1,7 +1,8 @@
 import { useState } from "react"
 import ExternalServices from "../services/ExternalServices"
+import {postFlight, getFlights} from "../services/InternalServices"
 
-const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
+const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSearchList}) => {
 
     const [search, setSearch] = useState({
         departureString: "",
@@ -12,6 +13,7 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         arrivalTime: ""
     })
 
+    const [saveSearchChecked, setSaveSearchChecked] = useState(false)
     const [departureGeoList, setDepartureGeoList] = useState("")
     const [arrivalGeoList, setArrivalGeoList] = useState("")
 
@@ -73,6 +75,10 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         const newSearch = Object.assign({}, search)
         newSearch[event.target.name] = event.target.value
 
+        if(event.target.name === "save") {
+            setSaveSearchChecked(!saveSearchChecked)
+        }
+
 
         console.log("dep select: ",selectedDepartureLocation)
         console.log("arr select: ",selectedArrivalLocation)
@@ -117,6 +123,16 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         }
         setGeoObj(newGeoObj)
 
+        if (saveSearchChecked === true) {
+            postFlight(newGeoObj)
+            .then( () => {
+                
+                getFlights().then((returnedFlights) => {
+                setSavedSearchList(returnedFlights)})
+
+            })
+        }
+
         setSearch({
             departureString: "",
             departureDate: "",
@@ -125,6 +141,8 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
             arrivalDate: "",
             arrivalTime: ""
         })
+
+        setSaveSearchChecked(false)
 
         setDepartureGeoList("")
         setArrivalGeoList("")
@@ -173,6 +191,8 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
                 <label htmlFor="arrival-time">Time:</label>
                 <input type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
             </div>
+            <label htmlFor="save-search">Would you like to save this search?</label>
+            <input id="save-search" name="save" type="checkbox" value={saveSearchChecked} checked={saveSearchChecked} onChange={onChange}></input>
             <input type="submit" value="Aerosure?"/>
         </form>
     )
