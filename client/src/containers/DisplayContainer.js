@@ -3,12 +3,6 @@ import styled from "styled-components"
 
 const DisplayContainer = ({forecast,geoObj}) => {
 
-    const CardDisplayContainer = styled.div`
-    display:flex;
-    border:solid thin red;
-    height:70vh;
-    justify-content:space-evenly;
-    `
 
     let slicedDepartures
     let slicedArrivals
@@ -66,9 +60,6 @@ const DisplayContainer = ({forecast,geoObj}) => {
         {code: 99, description: "thunderstorm with heavy hail", severity: 3}
     ]
 
-    const matchDepartureCode = weatherCodes.find(element => element.code === slicedDepartures[3].code)
-    // console.log(matchDepartureCode)
-    
 
     const departuresWithWeatherCodes = slicedDepartures.map((element)=>{
             const weatherObj = weatherCodes.find(weatherCode => element.code === weatherCode.code)
@@ -106,12 +97,20 @@ const DisplayContainer = ({forecast,geoObj}) => {
     )
 
     } else {
-        return null
+        return (
+        null)
     }
-
-
 }
 
+const CardDisplayContainer = styled.div`
+display:flex;
+border:solid thin red;
+height:70vh;
+justify-content:space-evenly;
+margin:0;
+background: rgb(244,238,229);
+background: radial-gradient(circle, rgba(244,238,229,1) 70%, rgba(35,123,161,0.8169861694677871) 100%);
+`
 
 
 export default DisplayContainer

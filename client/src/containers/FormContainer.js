@@ -19,11 +19,12 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         departureLatitude: "",
         departureLongitude: "",
     })
+    console.log(selectedDepartureLocation)
     const [selectedArrivalLocation, setSelectedArrivalLocation] = useState({
         arrivalLatitude: "",
         arrivalLongitude: "",
     })
-
+    
     let parsedDepartureGeoList;
     let parsedArrivalGeoList;
     
@@ -38,6 +39,7 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
     return resultOfMap}
     // onClick={()=>handleClick(geoLocation)}
 
+    
     parsedDepartureGeoList = mapFunction(departureGeoList)
     parsedArrivalGeoList = mapFunction(arrivalGeoList)
 
@@ -71,6 +73,15 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         const newSearch = Object.assign({}, search)
         newSearch[event.target.name] = event.target.value
 
+
+        console.log("dep select: ",selectedDepartureLocation)
+        console.log("arr select: ",selectedArrivalLocation)
+
+        if ((event.target.name === "departureString" || event.target.name === "arrivalString") && event.target.value.length >= 2) {
+            setDepartureGeoList([])
+            setArrivalGeoList([])
+        }
+
         if (event.target.name === "departureString" && event.target.value.length > 2) {
             const newGeoList = ExternalServices.getGeoList(event.target.value)
             newGeoList.then(resultofGetGeoList => setDepartureGeoList(resultofGetGeoList))
@@ -85,6 +96,9 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         }
         setSearch(newSearch)
     }
+
+
+
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -131,38 +145,36 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         <form onSubmit={handleSubmit}>
             <div className="departure-container">
                 <label htmlFor="departure-name">From:</label>
-                <input list="departure_name" name="departureString" id="departure-name" value={search.departureString} onChange={onChange} placeholder="type here"/>
+                <input list="departure_name" name="departureString" id="departure-name" value={search.departureString} onChange={onChange} placeholder="type here" required />
                 {parsedDepartureGeoList?                 
                 <select id="departure-select" name="departure-select" onChange={onChangeSelect} required >
+                    <option> Please select </option>
                     {parsedDepartureGeoList}
                 </select>
                 :
                 null}
                 <label htmlFor="departure-date">Date:</label>
-                <input type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange}/>
+                <input type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} required />
                 <label htmlFor="departure-time">Time:</label>
-                <input type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange}/>
-                <input type="hidden" id="departure-object" />
+                <input type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange} required />
             </div>
             <div className="arrival-container">
             <label htmlFor="arrival-name">To:</label>
-                <input list="arrival_name"id="arrival-name" name="arrivalString" value={search.arrivalString} onChange={onChange} placeholder="type here"/>
+                <input list="arrival_name"id="arrival-name" name="arrivalString" value={search.arrivalString} onChange={onChange} placeholder="type here" required />
                 {parsedArrivalGeoList?                 
-                <select id="arrival-select" name="arrival-select" onChange={onChangeSelect} >
+                <select id="arrival-select" name="arrival-select" onChange={onChangeSelect} required >
+                    <option> Please select </option>
                     {parsedArrivalGeoList}
                 </select>
                 :
                 null}
                 <label htmlFor="arrival-date">Date:</label>
-                <input type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange}/>
+                <input type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange} required />
                 <label htmlFor="arrival-time">Time:</label>
-                <input type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange}/>
+                <input type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
             </div>
             <input type="submit" value="Aerosure?"/>
         </form>
-
-
-
     )
 }
 

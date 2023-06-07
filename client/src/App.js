@@ -30,7 +30,7 @@ function App() {
       arrival:{},
   })
 
- const runForecast = (()=>{
+ const runForecast = ((geoObj)=>{
 
     ExternalServices.getForecast(geoObj)
     .then(res => {
@@ -55,12 +55,6 @@ function App() {
         arrival:compiledArrivalForecast})
     })
   })
-
-
-
-  
-
-
 
   return (
     <Router>

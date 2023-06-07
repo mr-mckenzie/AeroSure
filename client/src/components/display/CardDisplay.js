@@ -13,11 +13,11 @@ const CardDisplay = ({weather}) => {
 
 
     return (
-        <CardContainer id="card-container">
+        <CardContainer id="card-container" >
             <div id="basic-information">
             <img src="./images/"/>
             <p>{weather[3].description}</p>
-            <p>{weather[3].temp}</p>
+            <p>{weather[3].temp}°C</p>
             </div>
             <div id="chance-display">
             <p>{weather[3].hour}</p>
@@ -31,6 +31,12 @@ const CardDisplay = ({weather}) => {
 const CardContainer = styled.div`
 border:solid thin black;
 display:flex;
+padding:3px;
+width:45vw;
+height:10rem;
+margin:10px;
+border-radius:10px;
+
 `
 
 export default CardDisplay
