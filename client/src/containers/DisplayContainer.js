@@ -98,18 +98,19 @@ const DisplayContainer = ({forecast,geoObj}) => {
 
     } else {
         return (
-        null)
+            <CardDisplayContainer className="display-container">
+                    </CardDisplayContainer>
+
+        )
     }
 }
 
 const CardDisplayContainer = styled.div`
 display:flex;
-border:solid thin red;
 height:70vh;
 justify-content:space-evenly;
 margin:0;
-background: rgb(244,238,229);
-background: radial-gradient(circle, rgba(244,238,229,1) 70%, rgba(35,123,161,0.8169861694677871) 100%);
+
 `
 
 

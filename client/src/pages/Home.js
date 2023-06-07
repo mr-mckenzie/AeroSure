@@ -6,7 +6,7 @@ const Home = ({geoList, setGeoList, setGeoObj,forecast,geoObj,runForecast, setSa
     return (
         <>
             <FormContainer runForecast={runForecast} geoList={geoList} setGeoList={setGeoList} setGeoObj={setGeoObj} setSavedSearchList={setSavedSearchList}/>
-            <DisplayContainer geoObj={geoObj} forecast={forecast} />        
+           { forecast && <DisplayContainer geoObj={geoObj} forecast={forecast} /> }      
         </>
     )
 }
