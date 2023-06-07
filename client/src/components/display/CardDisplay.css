@@ -3,6 +3,7 @@
     border-color: linear-gradient(0deg, rgba(255,255,255,0.8169861694677871) 1%, rgba(255,1,0,1) 98%);
     background: rgb(232,238,245);
     background: linear-gradient(90deg, rgba(232,238,245,1) 46%, rgba(239, 82, 25, 0.845) 99%);
+
     
 }
 
@@ -11,7 +12,7 @@
     /* border: double thick; */
     background: rgb(232,238,245);
     background: linear-gradient(90deg, rgba(232,238,245,1) 46%, rgba(239, 147, 25, 0.845) 99%);
-    
+
 }
 
 .card-green {
@@ -27,9 +28,12 @@
     height: 7.3rem;
     margin: 5px;
     justify-content: space-between;
+    box-shadow: 0 30px 40px rgba(0,0,0,.1);
 }
 .chance-display {
     width: auto;
+    display: flex;
+        
 }
 
 .card-image {
@@ -42,8 +46,27 @@
 .basic-information {
     display: flex;
     flex-direction: column;
-    height: auto;
+    width: 250px;
+    margin-left: 15px;
+    margin-right: 15px;
+    align-items: center;
 }
 .basic-information p {
     height: 2px;
 }
+
+
+@media (prefers-reduced-motion: no-preference) {
+    .rotate-image {
+      animation: App-logo-spin infinite 5s linear;
+    }
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

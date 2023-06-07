@@ -9,6 +9,7 @@ import thunder from "../../thunderstormIcon.png"
 
 const CardDisplay = ({weather}) => {
 
+    let severityString = ""
 
 
     // console.log({weather})
@@ -17,10 +18,13 @@ const CardDisplay = ({weather}) => {
 
     const checkSev = () => {
     if (sev <=3 ) {
+        severityString = "Low chances of delay / cancellation of flight"
         return "card-green"
     } else if (sev < 6) {
+        severityString = "Moderate chances of delay / cancellation of flight"
         return "card-yellow"
     } else {
+        severityString = "High chances of delay / cancellation of flight"
         return "card-red"
     }
 }   
@@ -31,34 +35,42 @@ const CardDisplay = ({weather}) => {
     const thunderArray = [95,96,99]
     
     // console.log(weather[3])
-
+ 
     // const checkImg = () => {
         let myImg
+        let spin
         const weatherCode = weather[3].code 
         // console.log({weatherCode})
         if (sunnyArray.includes(weatherCode)) {
             myImg = sun
+            spin = "rotate-image"
         } else if (cloudArray.includes(weatherCode)) {
             myImg = cloud
+            spin = "card-image"
         } else if (rainArray.includes(weatherCode)) {
             myImg =  rain
+            spin = "card-image"
         } else if (snowArray.includes(weatherCode)) {
             myImg =  snow
+            spin = "rotate-image"
         } else if (thunderArray.includes(weatherCode)) {
             myImg =  thunder
+            spin = "card-image"
         }
+
+
         
     return (
         <CardContainer id="card-container" className={checkSev()}>
             <div className="card">
-            <img className="card-image" src={myImg}/>   
-
+                <img className={spin} src={myImg} /> 
                 <div className="basic-information" id="basic-information">
-                 <p>{weather[3].description}</p>
                     <p>{weather[3].temp}°C</p>
+                    <p>{weather[3].description}</p>
                 </div>
                 <div id="chance-display">
                     <p>{weather[3].hour.slice(-5)}</p>
+                    <p>{severityString}</p>
                 </div>
             </div>
         </CardContainer>

@@ -47,3 +47,7 @@ to {background-position: -20px 0px;background-size:1300px;}
   font-family: 'Source Code Pro', monospace;
   text-transform:uppercase;
 }
+
+.display-title {
+  text-align: center;
+}

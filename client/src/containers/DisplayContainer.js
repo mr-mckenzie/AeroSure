@@ -83,13 +83,13 @@ const DisplayContainer = ({forecast,geoObj}) => {
     return (
         <CardDisplayContainer className="display-container">
         <div id="departures">
-            <h3>{geoObj.departureName}</h3>
+            <h3 className="display-title">Departure - {geoObj.departureName}</h3>
             <CardDisplay weather={weatherForExactDeparture} />
             <CardDisplay weather={weatherForExactDeparture1} /> 
             <CardDisplay weather={weatherForExactDeparture2} />
         </div> 
         <div id="arrivals">
-            <h3>{geoObj.arrivalName}</h3>
+            <h3 className="display-title">Arrival - {geoObj.arrivalName}</h3>
             <CardDisplay weather={weatherForExactArrival} />
             <CardDisplay weather={weatherForExactArrival1} />
             <CardDisplay weather={weatherForExactArrival2} />
@@ -113,6 +113,8 @@ justify-content:space-evenly;
 margin:0;
 
 `
+const styledName = styled.h3`
 
+`
 
 export default DisplayContainer
