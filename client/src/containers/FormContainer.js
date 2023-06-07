@@ -1,9 +1,11 @@
 import { useState } from "react"
 import ExternalServices from "../services/ExternalServices"
+import {postFlight, getFlights} from "../services/InternalServices"
 import "./FormContainer.css"
 import { useAsyncError } from "react-router-dom"
 
-const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
+
+const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSearchList}) => {
 
     const rightHereRightNow = new Date().toISOString().slice(0, 10)
     const [search, setSearch] = useState({
@@ -15,7 +17,7 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         arrivalTime: ""
     })
 
-    const [depDate,setdepDate] = useState("dd-mm-yyyy")
+    const [saveSearchChecked, setSaveSearchChecked] = useState(false)
 
     const [departureGeoList, setDepartureGeoList] = useState("")
     const [arrivalGeoList, setArrivalGeoList] = useState("")
@@ -79,6 +81,10 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         const newSearch = Object.assign({}, search)
         newSearch[event.target.name] = event.target.value
 
+        if(event.target.name === "save") {
+            setSaveSearchChecked(!saveSearchChecked)
+        }
+
 
         console.log("dep select: ",selectedDepartureLocation)
         console.log("arr select: ",selectedArrivalLocation)
@@ -126,6 +132,16 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         }
         setGeoObj(newGeoObj)
 
+        if (saveSearchChecked === true) {
+            postFlight(newGeoObj)
+            .then( () => {
+                
+                getFlights().then((returnedFlights) => {
+                setSavedSearchList(returnedFlights)})
+
+            })
+        }
+
         setSearch({
             departureString: "",
             departureDate: "",
@@ -134,6 +150,8 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
             arrivalDate: "",
             arrivalTime: ""
         })
+
+        setSaveSearchChecked(false)
 
         setDepartureGeoList("")
         setArrivalGeoList("")
@@ -184,6 +202,8 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
                 <input className="form-input" type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
             </div>
             </div>
+            <label htmlFor="save-search">Would you like to save this search?</label>
+            <input id="save-search" name="save" type="checkbox" value={saveSearchChecked} checked={saveSearchChecked} onChange={onChange}></input>
             <input className="form-button" type="submit" value="Aerosure?"/>
         </form>
     )
