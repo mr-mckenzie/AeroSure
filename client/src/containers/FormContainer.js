@@ -202,9 +202,11 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSear
                 <input className="form-input" type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
             </div>
             </div>
-            <label htmlFor="save-search">Would you like to save this search?</label>
-            <input id="save-search" name="save" type="checkbox" value={saveSearchChecked} checked={saveSearchChecked} onChange={onChange}></input>
-            <input className="form-button" type="submit" value="Aerosure?"/>
+            <div className="submit-save-container">
+                <label htmlFor="save-search">Save</label>
+                <input id="save-search" name="save" type="checkbox" value={saveSearchChecked} checked={saveSearchChecked} onChange={onChange}></input>
+                <input className="form-button" type="submit" value="Aerosure?"/>
+            </div>
         </form>
     )
 }
