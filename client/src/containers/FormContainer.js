@@ -8,6 +8,7 @@ import { useAsyncError } from "react-router-dom"
 const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSearchList}) => {
 
     const rightHereRightNow = new Date().toISOString().slice(0, 10)
+
     const [search, setSearch] = useState({
         departureString: "",
         departureDate: "",

@@ -69,7 +69,8 @@ const CardDisplay = ({weather}) => {
                     <p>{weather[3].description}</p>
                 </div>
                 <div id="chance-display">
-                    <p>{weather[3].hour.slice(-5)}</p>
+                    {/* <p>{weather[3].hour.slice(-5)}</p> */}
+                    <p>{weather[3].geoObj.arrivalTime}</p>
                     <p>{severityString}</p>
                 </div>
             </div>
