@@ -1,6 +1,8 @@
 const FooterContainer = () => {
 
-    return null
+    return (
+        <p>© 2023 Mahzabin, Daniel & Michael.</p>
+    )
 }
 
 export default FooterContainer
