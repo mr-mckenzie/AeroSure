@@ -63,7 +63,7 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSear
                 departureLongitude: myLocation.longitude
                 
             })
-            setdepDate(event.target.value)
+
         }
         if (event.target.name === "arrival-select") {
             const myLocation = arrivalGeoList.find((loc)=> loc.id == id)
