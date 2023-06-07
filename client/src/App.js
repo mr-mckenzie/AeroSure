@@ -6,6 +6,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import Home from "./pages/Home";
 import About from "./pages/About";
 import ExternalServices from "./services/ExternalServices";
+import {getFlights, getflight} from "./services/InternalServices";
 
 function App() {
 
@@ -19,6 +20,13 @@ function App() {
 
   const [savedSearch, setSavedSearch] = useState([])
   const [savedSearchList, setSavedSearchList] = useState([])
+
+  //use effect runs on startup to populate saved searches from server
+  useEffect(() => {
+    getFlights().then((returnedFlights) => {
+      setSavedSearchList(returnedFlights)
+    })
+}, [])
 
   const [rawForecast,setRawForecast] = useState({
     departure:{},
@@ -58,7 +66,7 @@ function App() {
 
   return (
     <Router>
-    <NavContainer/>
+    <NavContainer setSavedSearch={setSavedSearch} savedSearchList={savedSearchList} setGeoObj={setGeoObj} runForecast={runForecast}/>
       <Routes>
         <Route path="/" element={<Home 
         geoList={geoList}
@@ -67,6 +75,7 @@ function App() {
         setGeoObj={setGeoObj} 
         setGeoList={setGeoList}
         runForecast={runForecast}
+        setSavedSearchList={setSavedSearchList}
         />} />
         <Route path="/about" element={<About/>} />
       </Routes>

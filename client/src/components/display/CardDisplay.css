@@ -1,0 +1,23 @@
+.card-red {
+    /* border: double thick; */
+    border-color: linear-gradient(0deg, rgba(255,255,255,0.8169861694677871) 1%, rgba(255,1,0,1) 98%);
+    background: rgb(232,238,245);
+    background: linear-gradient(90deg, rgba(232,238,245,1) 46%, rgba(239, 82, 25, 0.845) 99%);
+    
+}
+
+.card-yellow {
+    border-color: rgb(255, 179, 0);
+    /* border: double thick; */
+    background: rgb(232,238,245);
+    background: linear-gradient(90deg, rgba(232,238,245,1) 46%, rgba(239, 147, 25, 0.845) 99%);
+    
+}
+
+.card-green {
+    border-color: green;    
+    /* border: double thick; */
+    background: rgb(232,238,245);
+    background: linear-gradient(90deg, rgba(232,238,245,1) 46%, rgba(55,184,127,0.8449973739495799) 99%);
+
+}

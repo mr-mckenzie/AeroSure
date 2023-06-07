@@ -1,8 +1,13 @@
 import { useState } from "react"
 import ExternalServices from "../services/ExternalServices"
+import {postFlight, getFlights} from "../services/InternalServices"
+import "./FormContainer.css"
+import { useAsyncError } from "react-router-dom"
 
-const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
 
+const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSearchList}) => {
+
+    const rightHereRightNow = new Date().toISOString().slice(0, 10)
     const [search, setSearch] = useState({
         departureString: "",
         departureDate: "",
@@ -11,6 +16,8 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         arrivalDate: "",
         arrivalTime: ""
     })
+
+    const [saveSearchChecked, setSaveSearchChecked] = useState(false)
 
     const [departureGeoList, setDepartureGeoList] = useState("")
     const [arrivalGeoList, setArrivalGeoList] = useState("")
@@ -25,46 +32,47 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         arrivalLongitude: "",
     })
     
-    let parsedDepartureGeoList;
-    let parsedArrivalGeoList;
+ 
     
     const mapFunction = (inputGeoList) => {
     let resultOfMap
         if (inputGeoList && inputGeoList.length > 0) {
             resultOfMap = inputGeoList.map( geoLocation => {
-                const opt = `${geoLocation.name} - ${geoLocation.country} - ${(geoLocation.admin1 || geoLocation.admin2) || null}`
+                const opt = `${geoLocation.name} - ${geoLocation.country} ${ (geoLocation.admin1 ? "- "  + geoLocation.admin1 :false || geoLocation.admin2 ? "- "  + geoLocation.admin2 :false)  || " "}` // consider adding a helper function, as same logic to the left can be needed for edge case when "country" is undefined nice api :)
                 return <option key={geoLocation.id} value={geoLocation.id} > {opt} </option> 
         })}
 
     return resultOfMap}
     // onClick={()=>handleClick(geoLocation)}
 
-    
-    parsedDepartureGeoList = mapFunction(departureGeoList)
-    parsedArrivalGeoList = mapFunction(arrivalGeoList)
+    // let parsedDepartureGeoList;
+    // let parsedArrivalGeoList;
+    const parsedDepartureGeoList = mapFunction(departureGeoList)
+    const parsedArrivalGeoList = mapFunction(arrivalGeoList)
 
     const onChangeSelect = (event) => {
 
         const id = event.target.value
-
+        
         if (event.target.name === "departure-select") {
             const myLocation = departureGeoList.find((loc)=> loc.id == id)
+            console.log({myLocation})
             setSelectedDepartureLocation({
                 departureName: myLocation.name, 
                 departureLatitude: myLocation.latitude,
                 departureLongitude: myLocation.longitude
                 
             })
-            console.log(`selected departure ${selectedDepartureLocation.name}`)
+            setdepDate(event.target.value)
         }
         if (event.target.name === "arrival-select") {
             const myLocation = arrivalGeoList.find((loc)=> loc.id == id)
+            console.log({myLocation})
             setSelectedArrivalLocation({
                 arrivalName: myLocation.name,
                 arrivalLatitude: myLocation.latitude,
                 arrivalLongitude: myLocation.longitude
             })
-            console.log(`selected arrival ${selectedArrivalLocation.name}`)
         }
 
     }
@@ -73,12 +81,19 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         const newSearch = Object.assign({}, search)
         newSearch[event.target.name] = event.target.value
 
+        if(event.target.name === "save") {
+            setSaveSearchChecked(!saveSearchChecked)
+        }
+
 
         console.log("dep select: ",selectedDepartureLocation)
         console.log("arr select: ",selectedArrivalLocation)
 
-        if ((event.target.name === "departureString" || event.target.name === "arrivalString") && event.target.value.length >= 2) {
+        if (event.target.name === "departureString" && event.target.value.length >= 2) {
             setDepartureGeoList([])
+        }
+
+        if (event.target.name === "arrivalString" && event.target.value.length >= 2) {
             setArrivalGeoList([])
         }
 
@@ -117,6 +132,16 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
         }
         setGeoObj(newGeoObj)
 
+        if (saveSearchChecked === true) {
+            postFlight(newGeoObj)
+            .then( () => {
+                
+                getFlights().then((returnedFlights) => {
+                setSavedSearchList(returnedFlights)})
+
+            })
+        }
+
         setSearch({
             departureString: "",
             departureDate: "",
@@ -125,6 +150,8 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
             arrivalDate: "",
             arrivalTime: ""
         })
+
+        setSaveSearchChecked(false)
 
         setDepartureGeoList("")
         setArrivalGeoList("")
@@ -142,41 +169,46 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast}) => {
     }
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="search-form">
+            <div className="inform-container">
             <div className="departure-container">
-                <label htmlFor="departure-name">From:</label>
-                <input list="departure_name" name="departureString" id="departure-name" value={search.departureString} onChange={onChange} placeholder="type here" required />
+                <label className="form-label" htmlFor="departure-name">From:</label>
+                <input className="form-input" list="departure_name" name="departureString" id="departure-name" value={search.departureString} onChange={onChange} placeholder="type here" required />
                 {parsedDepartureGeoList?                 
-                <select id="departure-select" name="departure-select" onChange={onChangeSelect} required >
+                <select id="departure-select" className="search-select" name="departure-select" onChange={onChangeSelect} required >
                     <option> Please select </option>
                     {parsedDepartureGeoList}
                 </select>
                 :
-                null}
-                <label htmlFor="departure-date">Date:</label>
-                <input type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} required />
-                <label htmlFor="departure-time">Time:</label>
-                <input type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange} required />
+                <select className="search-select"><option>Nothing Found</option></select>}
+                <label className="form-label" htmlFor="departure-date">Date:</label>
+                <input className="form-input" type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} min={rightHereRightNow} required />
+                <label className="form-label" htmlFor="departure-time">Time:</label>
+                <input className="form-input" type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange}  required />
             </div>
             <div className="arrival-container">
-            <label htmlFor="arrival-name">To:</label>
-                <input list="arrival_name"id="arrival-name" name="arrivalString" value={search.arrivalString} onChange={onChange} placeholder="type here" required />
+            <label className="form-label" htmlFor="arrival-name">To:</label>
+                <input className="form-input" list="arrival_name"id="arrival-name" name="arrivalString" value={search.arrivalString} onChange={onChange} placeholder="type here" required />
                 {parsedArrivalGeoList?                 
-                <select id="arrival-select" name="arrival-select" onChange={onChangeSelect} required >
+                <select id="arrival-select" className="search-select" name="arrival-select" onChange={onChangeSelect} required >
                     <option> Please select </option>
                     {parsedArrivalGeoList}
                 </select>
                 :
-                null}
-                <label htmlFor="arrival-date">Date:</label>
-                <input type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange} required />
-                <label htmlFor="arrival-time">Time:</label>
-                <input type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
+                <select className="search-select"><option>Nothing Found</option></select>}
+                <label className="form-label" htmlFor="arrival-date">Date:</label>
+                <input className="form-input" type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange} min={ search.departureDate || rightHereRightNow} required />
+                <label className="form-label" htmlFor="arrival-time">Time:</label>
+                <input className="form-input" type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
             </div>
-            <input type="submit" value="Aerosure?"/>
+            </div>
+            <label htmlFor="save-search">Would you like to save this search?</label>
+            <input id="save-search" name="save" type="checkbox" value={saveSearchChecked} checked={saveSearchChecked} onChange={onChange}></input>
+            <input className="form-button" type="submit" value="Aerosure?"/>
         </form>
     )
 }
+
 
 
 
