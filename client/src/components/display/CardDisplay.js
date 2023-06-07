@@ -1,19 +1,26 @@
-
+import "./CardDisplay.css"
 import styled from "styled-components"
 
 const CardDisplay = ({weather}) => {
 
-
-
-        //checks the total severity for the 3 hours prior do hour
-    const checkPrevHours = weather.slice(0,3).reduce((total,element)=>total+element.severity,0)
-    //const checkArrPrevHours = arrivalsWithWeathercodes.slice(0,3).reduce((total,element)=>total+element.severity,0)
-
     
+    console.log({weather})
+    const sev = weather.slice(0,3).reduce((total,current) => 
+         total+current.severity,0)
 
+    const checkSev = () => {
+    if (sev <=3 ) {
+        return "card-green"
+    } else if (sev < 6) {
+        return "card-yellow"
+    } else {
+        return "card-red"
+    }
+}
 
+    console.log({sev})
     return (
-        <CardContainer id="card-container" >
+        <CardContainer id="card-container" className={checkSev()}>
             <div id="basic-information">
             <img src="./images/"/>
             <p>{weather[3].description}</p>
@@ -29,14 +36,12 @@ const CardDisplay = ({weather}) => {
 }
 
 const CardContainer = styled.div`
-border:solid thin black;
 display:flex;
 padding:3px;
 width:45vw;
 height:10rem;
 margin:10px;
 border-radius:10px;
-
 `
 
 export default CardDisplay
