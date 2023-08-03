@@ -7,7 +7,7 @@ import { useAsyncError } from "react-router-dom"
 
 const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSearchList}) => {
 
-    const rightHereRightNow = new Date().toISOString().slice(0, 10)
+    const currentDate = new Date().toISOString().slice(0, 10)
 
     const [search, setSearch] = useState({
         departureString: "",
@@ -85,10 +85,6 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSear
         if(event.target.name === "save") {
             setSaveSearchChecked(!saveSearchChecked)
         }
-
-
-        console.log("dep select: ",selectedDepartureLocation)
-        console.log("arr select: ",selectedArrivalLocation)
 
         if (event.target.name === "departureString" && event.target.value.length >= 2) {
             setDepartureGeoList([])
@@ -183,7 +179,7 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSear
                 :
                 <select className="search-select"><option>Nothing Found</option></select>}
                 <label className="form-label" htmlFor="departure-date">Date:</label>
-                <input className="form-input" type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} min={rightHereRightNow} required />
+                <input className="form-input" type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} min={currentDate} required />
                 <label className="form-label" htmlFor="departure-time">Time:</label>
                 <input className="form-input" type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange}  required />
             </div>
@@ -198,7 +194,7 @@ const FormContainer = ({geoList, setGeoList, setGeoObj,runForecast, setSavedSear
                 :
                 <select className="search-select"><option>Nothing Found</option></select>}
                 <label className="form-label" htmlFor="arrival-date">Date:</label>
-                <input className="form-input" type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange} min={ search.departureDate || rightHereRightNow} required />
+                <input className="form-input" type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange} min={ search.departureDate || currentDate} required />
                 <label className="form-label" htmlFor="arrival-time">Time:</label>
                 <input className="form-input" type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
             </div>
