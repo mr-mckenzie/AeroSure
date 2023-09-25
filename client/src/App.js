@@ -10,7 +10,6 @@ import {getFlights, getflight} from "./services/InternalServices";
 
 function App() {
 
-  const [geoList, setGeoList] = useState([]) //returns from GEO API
   const [geoObj, setGeoObj] = useState({
     departureLongitude:10.00,
     departureLatitude:10.00,
@@ -69,11 +68,9 @@ function App() {
     <NavContainer setSavedSearch={setSavedSearch} savedSearchList={savedSearchList} setGeoObj={setGeoObj} runForecast={runForecast}/>
       <Routes>
         <Route path="/" element={<Home 
-        geoList={geoList}
         forecast={forecast}
         geoObj={geoObj}
         setGeoObj={setGeoObj} 
-        setGeoList={setGeoList}
         runForecast={runForecast}
         setSavedSearchList={setSavedSearchList}
         />} />

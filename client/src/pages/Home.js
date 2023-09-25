@@ -2,11 +2,11 @@ import DisplayContainer from "../containers/DisplayContainer"
 import FormContainer from "../containers/FormContainer"
 // import "./background.css"
 
-const Home = ({geoList, setGeoList, setGeoObj,forecast,geoObj,runForecast, setSavedSearchList}) => {
+const Home = ({setGeoObj,forecast,geoObj,runForecast, setSavedSearchList}) => {
 
     return (
         <div>
-            <FormContainer runForecast={runForecast} geoList={geoList} setGeoList={setGeoList} setGeoObj={setGeoObj} setSavedSearchList={setSavedSearchList}/>
+            <FormContainer runForecast={runForecast} setGeoObj={setGeoObj} setSavedSearchList={setSavedSearchList}/>
            { forecast && <DisplayContainer geoObj={geoObj} forecast={forecast} /> }      
         </div>
     )
