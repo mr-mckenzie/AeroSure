@@ -10,27 +10,17 @@ import {getFlights, getflight} from "./services/InternalServices";
 
 function App() {
 
-  const [geoObj, setGeoObj] = useState({
-    departureLongitude:10.00,
-    departureLatitude:10.00,
-    arrivalLongitude:10.00,
-    arrivalLatitude:10.00
-  }) // returns from form submit
-
+  const [geoObj, setGeoObj] = useState({}) // returns from form submit
   const [savedSearch, setSavedSearch] = useState([])
   const [savedSearchList, setSavedSearchList] = useState([])
 
   //use effect runs on startup to populate saved searches from server
-  useEffect(() => {
-    getFlights().then((returnedFlights) => {
-      setSavedSearchList(returnedFlights)
-    })
-}, [])
-
-  const [rawForecast,setRawForecast] = useState({
-    departure:{},
-    arrival:{},
-  }) // returns from METEOAPI
+  // COMMENTED OUT BELOW CODE FOR ONLINE HOSTING WHERE SERVER SIDE IS NOT ACTIVE
+  //   useEffect(() => {
+  //     getFlights().then((returnedFlights) => {
+  //       setSavedSearchList(returnedFlights)
+  //     })
+  // }, [])
 
   const [forecast,setForecast] = useState({
       departure:{},
@@ -40,22 +30,20 @@ function App() {
  const runForecast = ((geoObj)=>{
 
     ExternalServices.getForecast(geoObj)
-    .then(res => {
+    .then(result => {
       let newForecast ={
-        departure:res[0].hourly,
-        arrival:res[1].hourly
+        departure:  result[0].hourly,
+        arrival:    result[1].hourly
       }
-      setRawForecast(newForecast)
+
     return newForecast})
     .then( newForecast => {
       let compiledDepartureForecast
       let compiledArrivalForecast
-      //ISSUE HERE V
         compiledDepartureForecast = newForecast.departure.time.map((hour,index) => {
           return {hour : hour, temp : newForecast.departure.temperature_2m[index], code : newForecast.departure.weathercode[index] }})
         compiledArrivalForecast = newForecast.arrival.time.map((hour,index) => {
           return {hour : hour, temp : newForecast.arrival.temperature_2m[index], code : newForecast.arrival.weathercode[index] }})
-      
       
       setForecast({
         departure:compiledDepartureForecast,
