@@ -194,10 +194,11 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
                 <div className="submit-container">
                     <input className="form-button" type="submit" value="Aerosure?" />
                 </div>
-                <div className="form-save">
+                {/* COMMENTED OUT CHECKBOX TO SAVE SEARCH FOR ONLINE HOSTING WHERE SERVER SIDE IS NOT ACTIVE */}
+                {/* <div className="form-save">
                     <label htmlFor="save-search">Save</label>
                     <input id="save-search" name="save" type="checkbox" value={saveSearchChecked} checked={saveSearchChecked} onChange={onChange}></input>
-                </div>
+                </div> */}
             </div>
         </form>
     )
