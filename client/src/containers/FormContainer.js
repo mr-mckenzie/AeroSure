@@ -6,7 +6,13 @@ import "./FormContainer.css"
 
 const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
 
-    const dateToday = new Date().toISOString().slice(0, 10)
+    const today = new Date()
+    //maximum forecast is 16 days in future
+    const todayPlus16Days = new Date(today.getTime() + 1296000000)
+    const dateToday = today.toISOString().slice(0,10)
+    const maxDate = todayPlus16Days.toISOString().slice(0,10)
+    console.log(`today date: ${dateToday}`)
+    console.log(`max date: ${maxDate}`)
 
     //empty form state
     const [search, setSearch] = useState({
@@ -167,7 +173,7 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
                         {mappedDepartureList}
                     </select>
                     <label className="form-label" htmlFor="departure-date">Date:</label>
-                    <input className="form-input" type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} min={dateToday} required />
+                    <input className="form-input" type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} min={dateToday} max={maxDate} required />
                     <label className="form-label" htmlFor="departure-time">Time:</label>
                     <input className="form-input" type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange} required />
                 </div>
@@ -179,7 +185,7 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
                         {mappedArrivalList}
                     </select>
                     <label className="form-label" htmlFor="arrival-date">Date:</label>
-                    <input className="form-input" type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange} min={search.departureDate || dateToday} required />
+                    <input className="form-input" type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange} min={search.departureDate || dateToday} max={maxDate} required />
                     <label className="form-label" htmlFor="arrival-time">Time:</label>
                     <input className="form-input" type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
                 </div>
