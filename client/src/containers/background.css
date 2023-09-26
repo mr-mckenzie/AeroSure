@@ -1,34 +1,10 @@
-
-.display-container  {
-    background-image: url("./betterSky.jpg");
+.display-container {
+  background-image: url("./skyBackground.jpg");
   background-size:cover;
-        -webkit-animation: slidein 20s;
-        animation: slidein 20s;
-
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
-
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
-
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
+  background-position: 20%;
 }
 
-@-webkit-keyframes slidein {
-from {background-position: top; background-size:1600px; }
-to {background-position: -20px 0px;background-size:1300px;}
-}
-
-@keyframes slidein {
-from {background-position: top;background-size:1600px; }
-to {background-position: -20px 0px;background-size:1300px;}
-
-}
-
-
-.center
-{
+.center {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,11 +17,12 @@ to {background-position: -20px 0px;background-size:1300px;}
   background: rgba(75, 75, 250, 0.3);
   border-radius: 3px;
 }
-.center h1{
-  text-align:center;
-  color:white;
+
+.center h1 {
+  text-align: center;
+  color: white;
   font-family: 'Source Code Pro', monospace;
-  text-transform:uppercase;
+  text-transform: uppercase;
 }
 
 .display-title {

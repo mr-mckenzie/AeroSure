@@ -1,11 +1,11 @@
 import "./CardDisplay.css"
 import styled from "styled-components"
 import "./CardDisplay.css"
-import sun from "../../sunIcon.png"
-import rain from "../../rainIcon.png"
-import cloud from "../../cloudIcon.png"
-import snow from "../../snowIcon.png"
-import thunder from "../../thunderstormIcon.png"
+import sun from "./images/sunIcon.png"
+import rain from "./images/rainIcon.png"
+import cloud from "./images/cloudIcon.png"
+import snow from "./images/snowIcon.png"
+import thunder from "./images/thunderstormIcon.png"
 
 const CardDisplay = ({weather}) => {
 
