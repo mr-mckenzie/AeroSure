@@ -1,19 +1,27 @@
-#meteocodes {
-    height: 500px;
-    text-align: center;
-}
-
-.meteo-image-container {
+.about-content {
     display: flex;
-    justify-content: center;
-}
-
-.about-header {
-    display: flex;
-    justify-content: center;
-}
-
-.mvp-description, #weathercode-example, #citations {
+    flex-direction: column;
     padding-left: 30px;
     padding-right: 30px;
+}
+
+.code-table-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.code-table {
+    border: 2px solid rgb(14, 94, 106);
+    max-width: 500px
+}
+
+.code-table>tbody>tr>td {
+    padding: 5px 15px;
+
+}
+
+.header {
+    text-align: center;
 }
