@@ -1,9 +1,8 @@
 import CardDisplay from "../components/display/CardDisplay"
-import styled from "styled-components"
 import "./background.css"
 import "./NavContainer.css"
 import "./DisplayContainer.css"
-import { getWeatherWindow } from "../components/utilities/weatherWindow"
+import { getWeatherWindow } from "../components/utilities/weatherFunctions"
 const DisplayContainer = ({ forecast, geoObj }) => {
 
     if (forecast.departure[0]) {
