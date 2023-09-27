@@ -11,8 +11,6 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
     const todayPlus16Days = new Date(today.getTime() + 1296000000)
     const dateToday = today.toISOString().slice(0,10)
     const maxDate = todayPlus16Days.toISOString().slice(0,10)
-    console.log(`today date: ${dateToday}`)
-    console.log(`max date: ${maxDate}`)
 
     //empty form state
     const [search, setSearch] = useState({
@@ -90,6 +88,7 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
         if (event.target.name === "save") {
             setSaveSearchChecked(!saveSearchChecked)
         }
+
         if (event.target.name === "departureString" && event.target.value.length >= 2) {
             setDepartureGeoList([])
         }
