@@ -137,6 +137,11 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
                 })
         }
 
+        // run forecast function
+        runForecast(newGeoObj)
+    }
+
+    const handleClear = (event) => {
         // reset form fields
         setSearch({
             departureString: "",
@@ -157,10 +162,7 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
             arrivalLatitude: "",
             arrivalLongitude: "",
         })
-
-        // run forecast function
-        runForecast(newGeoObj)
-    }
+    } 
 
     return (
         <form onSubmit={handleSubmit} className="search-form">
@@ -192,7 +194,8 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
             </div>
             <div className="submit-save-container">
                 <div className="submit-container">
-                    <input className="form-button" type="submit" value="Aerosure?" />
+                    <input className="form-button" type="submit" value="AeroSure?" />
+                    <input className="form-button" type="button" onClick={handleClear} value="Clear form"/>
                 </div>
                 {/* COMMENTED OUT CHECKBOX TO SAVE SEARCH FOR ONLINE HOSTING WHERE SERVER SIDE IS NOT ACTIVE */}
                 {/* <div className="form-save">
