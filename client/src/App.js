@@ -11,8 +11,7 @@ import {getFlights, getflight} from "./services/InternalServices";
 function App() {
 
   const [geoObj, setGeoObj] = useState({}) // returns from form submit
-  const [savedSearch, setSavedSearch] = useState([])
-  const [savedSearchList, setSavedSearchList] = useState([])
+  const [savedSearchList, setSavedSearchList] = useState([]) //saved searches
 
   //use effect runs on startup to populate saved searches from server
   // COMMENTED OUT BELOW CODE FOR ONLINE HOSTING WHERE SERVER SIDE IS NOT ACTIVE
@@ -53,7 +52,7 @@ function App() {
 
   return (
     <Router>
-    <NavContainer setSavedSearch={setSavedSearch} savedSearchList={savedSearchList} setGeoObj={setGeoObj} runForecast={runForecast}/>
+    <NavContainer savedSearchList={savedSearchList} setGeoObj={setGeoObj} runForecast={runForecast}/>
       <Routes>
         <Route path="/" element={<Home 
         forecast={forecast}
