@@ -15,7 +15,6 @@
 .nav-link-container {
     align-self: center;
     margin-left: 1rem;
-
 }
 
 .nav-link-container a {
@@ -39,4 +38,13 @@
 .nav-saved-button:hover{
     background-color: aquamarine;
     background-color: rgb(25, 200, 194);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-link:hover {
+    color:aquamarine;
 }

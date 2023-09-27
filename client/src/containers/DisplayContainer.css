@@ -1,0 +1,6 @@
+.display-container {
+    display: flex;
+    height: 73.5vh;
+    justify-content: space-evenly;
+    margin: 0;
+}

@@ -47,6 +47,8 @@
     border: none;
     background-color: rgb(23, 180, 175);
     color: white;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 .form-button:hover{
     background-color: aquamarine;
@@ -63,7 +65,8 @@
     gap: 2rem;
 }
 .submit-container {
-    
+    display: flex;
+    flex-direction: column;
 }
 .form-save {
     color: white;

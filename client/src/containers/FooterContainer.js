@@ -4,7 +4,9 @@ const FooterContainer = () => {
 
     return (
         <div className="footer-container">
-        <p className="footer-text">© 2023 Mahzabin, Daniel & Michael.</p>
+            <a className="footer-link" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
+            <p className="footer-text"><a className="footer-link" href="/About" >Disclaimer</a></p>
+            <p className="footer-text">© 2023 Mahzabin, Daniel & Michael.</p>
         </div>
     )
 }
