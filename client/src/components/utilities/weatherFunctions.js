@@ -25,13 +25,28 @@ export const checkSeverity = (forecast) => {
 
     const severity = forecast.slice(0, 3).reduce((total, current) => total + current.severity, 0)
 
+    let severityString = ""
+    let cardColour = ""
+
     if (severity <= 3) {
-        return {string: "Low chances of delay / cancellation of flight", colour: "card-green"}
-    } else if (severity < 6) {
-        return {string: "Moderate chances of delay / cancellation of flight", colour : "card-yellow"}
+        cardColour = "card-green"
+        severityString = "Low chance of delay/cancellation of flight"
+    } else if (severity < 6 ) {
+        cardColour = "card-yellow"
+        if (forecast[3].severity == 1) {
+            severityString = "Moderate chance of delay/cancellation of flight (possible earlier weather disruption)"
+        } else {
+            severityString = "Moderate chance of delay/cancellation of flight"
+        }
     } else {
-        return {string: "High chances of delay / cancellation of flight", colour : "card-red"}
+        cardColour = "card-red"
+        if (forecast[3].severity == 1) {
+            severityString = "High chance of delay/cancellation of flight (possible earlier weather disruption)"
+        } else {
+            severityString = "High chance of delay/cancellation of flight"
+        }
     }
+    return {string: severityString, colour: cardColour}
 }
 
 export const getImageDetails = (weatherCode) => {

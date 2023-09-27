@@ -26,13 +26,13 @@ const DisplayContainer = ({ forecast, geoObj }) => {
         return (
             <div className="display-container">
                 <div id="departures">
-                    <h3 className="display-title">Departure - {geoObj.departureName}</h3>
+                    <h3 className="display-title">Departure - {geoObj.departureName} ({departureTime}, {geoObj.departureDate})</h3>
                     <CardDisplay weather={weatherForDeparture} />
                     <CardDisplay weather={weatherForDeparturePlusOne} />
                     <CardDisplay weather={weatherForDeparturePlusTwo} />
                 </div>
                 <div id="arrivals">
-                    <h3 className="display-title">Arrival - {geoObj.arrivalName}</h3>
+                    <h3 className="display-title">Arrival - {geoObj.arrivalName} ({arrivalTime}, {geoObj.arrivalDate})</h3>
                     <CardDisplay weather={weatherForArrival} />
                     <CardDisplay weather={weatherForArrivalPlusOne} />
                     <CardDisplay weather={weatherForArrivalPlusTwo} />
