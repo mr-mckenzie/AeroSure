@@ -173,10 +173,12 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
                         {mappedDepartureList ? <option value=""> Please select </option> : <option value="">No results</option>}
                         {mappedDepartureList}
                     </select>
-                    <label className="form-label" htmlFor="departure-date">Date:</label>
-                    <input className="form-input" type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} min={dateToday} max={maxDate} required />
-                    <label className="form-label" htmlFor="departure-time">Time:</label>
-                    <input className="form-input" type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange} required />
+                    <div className="date-time-container">
+                        <label className="form-label" htmlFor="departure-date">Date:</label>
+                        <input className="form-input" type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} max={maxDate} required />
+                        <label className="form-label" htmlFor="departure-time">Time:</label>
+                        <input className="form-input" type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange} required />
+                    </div>
                 </div>
                 <div className="arrival-container">
                     <label className="form-label" htmlFor="arrival-name">To:</label>
@@ -185,16 +187,20 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
                         {mappedArrivalList ? <option value=""> Please select </option> : <option value="">No results</option>}
                         {mappedArrivalList}
                     </select>
-                    <label className="form-label" htmlFor="arrival-date">Date:</label>
-                    <input className="form-input" type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange} min={search.departureDate || dateToday} max={maxDate} required />
-                    <label className="form-label" htmlFor="arrival-time">Time:</label>
-                    <input className="form-input" type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
+                    <div className="date-time-container">
+                        <label className="form-label" htmlFor="arrival-date">Date:</label>
+                        <input className="form-input" type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange} min={search.departureDate || dateToday} max={maxDate} required />
+                        <label className="form-label" htmlFor="arrival-time">Time:</label>
+                        <input className="form-input" type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
+                    </div>
                 </div>
             </div>
             <div className="submit-save-container">
                 <div className="submit-container">
                     <input className="form-button" type="submit" value="AeroSure?" />
-                    <input className="form-button" type="button" onClick={handleClear} value="Clear form"/>
+                </div>
+                <div className="clear-container">
+                    <input className="form-button" id="clear-button" type="button" onClick={handleClear} value="Clear form"/>
                 </div>
                 {/* COMMENTED OUT CHECKBOX TO SAVE SEARCH FOR ONLINE HOSTING WHERE SERVER SIDE IS NOT ACTIVE */}
                 {/* <div className="form-save">

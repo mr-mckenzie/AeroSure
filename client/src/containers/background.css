@@ -1,5 +1,5 @@
 .display-container {
-  background-image: url("./skyBackground.jpg");
+  background-image: url("../static/images/skyBackground.jpg");
   background-size:cover;
   background-position: 20%;
 }

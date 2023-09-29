@@ -22,31 +22,31 @@
   margin: 5px;
   justify-content: space-between;
   box-shadow: 0 30px 40px rgba(0, 0, 0, .1);
+  width: 100%;
+}
+
+.card > img {
+  width: 15%;
+  height: auto;
+  align-self: center;
+  margin-left: 10px;
+  max-height: 100%;
 }
 
 .chance-display {
-  width: auto;
+  width: 70%;
   display: flex;
-}
-
-.card-image {
-  width: 5.5rem;
-  height: 5.5rem;
-  align-self: center;
-  margin-left: 15px;
+  flex-direction: column;
+  margin-bottom: 15px;
 }
 
 .basic-information {
   display: flex;
   flex-direction: column;
-  width: 250px;
-  margin-left: 15px;
+  width: 20%;
+  margin-left: 20px;
   margin-right: 15px;
-  align-items: center;
-}
-
-.basic-information p {
-  height: 2px;
+  align-items:flex-start;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -62,5 +62,15 @@
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width:1110px) {
+  #card-container {
+    display:flex;
+    width: 95%;
+    height:auto;
+    margin:10px;
+    border-radius:10px;
   }
 }

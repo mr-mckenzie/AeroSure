@@ -23,27 +23,29 @@ export const getWeatherWindow = (time, date, forecast) => {
 
 export const checkSeverity = (forecast) => {
 
-    const severity = forecast.slice(0, 3).reduce((total, current) => total + current.severity, 0)
+    const severityEarlier = forecast[0].severity + forecast[1].severity
+    const severityPreviousHour = forecast[2].severity
+    const severityNow = forecast[3].severity
 
     let severityString = ""
     let cardColour = ""
 
-    if (severity <= 3) {
-        cardColour = "card-green"
-        severityString = "Low chance of delay/cancellation of flight"
-    } else if (severity < 6 ) {
+    if (severityNow >= 3) {
+        cardColour = "card-red"
+        severityString =  "High chance of delay/cancellation of flight"
+    } else if (severityNow == 2) {
         cardColour = "card-yellow"
-        if (forecast[3].severity == 1) {
-            severityString = "Moderate chance of delay/cancellation of flight (possible earlier weather disruption)"
-        } else {
-            severityString = "Moderate chance of delay/cancellation of flight"
+        severityString =  "Moderate chance of delay/cancellation of flight"
+        if (severityPreviousHour >= 3 || severityPreviousHour == 2 && severityEarlier > 4) {
+            cardColour = "card-red"
+            severityString = "High chance of delay/cancellation of flight (possible earlier weather disruption)"
         }
     } else {
-        cardColour = "card-red"
-        if (forecast[3].severity == 1) {
-            severityString = "High chance of delay/cancellation of flight (possible earlier weather disruption)"
-        } else {
-            severityString = "High chance of delay/cancellation of flight"
+        cardColour = "card-green"
+        severityString = "Low chance of delay/cancellation of flight"
+        if (severityPreviousHour == 3 || severityPreviousHour >= 2 && severityEarlier >= 4) {
+            cardColour = "card-yellow"
+            severityString =  "Moderate chance of delay/cancellation of flight (possible earlier weather disruption)"
         }
     }
     return {string: severityString, colour: cardColour}

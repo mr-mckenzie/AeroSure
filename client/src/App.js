@@ -2,7 +2,6 @@ import { useEffect,useState } from "react";
 import {BrowserRouter as Router, Routes,Route} from "react-router-dom"
 import NavContainer from "./containers/NavContainer";
 import FooterContainer from "./containers/FooterContainer";
-import styled, { createGlobalStyle } from 'styled-components'
 import Home from "./pages/Home";
 import About from "./pages/About";
 import ExternalServices from "./services/ExternalServices";

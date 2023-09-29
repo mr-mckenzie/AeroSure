@@ -2,13 +2,14 @@
     background-color: rgb(14, 94, 106);
     padding: 1px;
     color: white;
-    height: 30px;
+    height: auto;
     display: flex;
     justify-content:space-between;
+    align-items: center;
 }
 
 .footer-text, .footer-link {
-    margin: 6px 35px
+    margin: 1rem
 }
 
 .footer-link {

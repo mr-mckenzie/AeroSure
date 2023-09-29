@@ -1,11 +1,11 @@
 .search-form {
     display: flex;
-    /* justify-content: space-between; */
     background: rgb(8, 55, 62);
     padding: 0px;
     justify-content: center;
     width: 100%;
     border-color: antiquewhite;
+    overflow: scroll;
 }
 
 .inform-container {
@@ -16,24 +16,32 @@
     margin: 20px;
 }
 
-.departure-container {
-    display: flex;
-}
-.arrival-container {
+.date-time-container {
     display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.departure-container, .arrival-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: scroll;
 }
 
 .search-select {
     width: 25rem;
     height: 3rem;
-    /* padding: 21px; */
     margin-left: 10px;
+    font-size: 14px;
+    align-self: center;
+    appearance: none;
+    padding-left: 5px;
+    border: 2px solid rgb(118, 118, 118),
 }
 
 .form-label {
     color:white;
-    width: 3rem;
-    height: 10px;
+    min-width: 2.6rem;
     margin-left: 10px;
     align-self:center;
     padding: 7px;
@@ -49,13 +57,21 @@
     color: white;
     margin-top: 8px;
     margin-bottom: 8px;
+    font-size: 14px;
 }
-.form-button:hover{
-    background-color: aquamarine;
-    background-color: rgb(25, 200, 194);
+.form-button:hover {
+    background-color:rgb(25, 200, 194);
+}
+
+#clear-button {
+    background-color:crimson;
+}
+#clear-button:hover {
+    background-color:rgb(235, 99, 128);
 }
 .form-input {
     padding: 10px;
+    font-size: 14px;
 }
 
 .submit-save-container {
@@ -64,10 +80,70 @@
     align-items: center;
     gap: 2rem;
 }
-.submit-container {
-    display: flex;
-    flex-direction: column;
-}
 .form-save {
     color: white;
+}
+
+@media screen and (max-width:1110px) {
+
+    .search-form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        min-width: 100%;
+        overflow: scroll;
+    }
+
+    .departure-container, .arrival-container, .submit-save-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #departure-name, #departure-select, #arrival-name, #arrival-select {
+        min-width: 95%;
+        margin: 2px;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width:768px) {
+
+    .search-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 100%;
+        overflow: visible;
+    }
+
+    .departure-container, .arrival-container, .submit-save-container {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        align-items: center;
+        justify-content: center;
+        min-width: 100%;
+        overflow: visible;
+        padding: 0;
+        appearance: none;
+        margin: 0;
+    }
+
+    .form-label {
+        margin: 2px;
+        padding: 2px;
+        min-width: 0;
+    }
+
+    .submit-save-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }
+
 }
