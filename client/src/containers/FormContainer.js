@@ -167,30 +167,32 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
         <form onSubmit={handleSubmit} className="search-form">
             <div className="inform-container">
                 <div className="departure-container">
-                    <label className="form-label" htmlFor="departure-name">From:</label>
+                    <label className="form-label" id="departure-label" htmlFor="departure-name">Departure:</label>
                     <input className="form-input" name="departureString" id="departure-name" value={search.departureString} onChange={onChange} placeholder="Enter your search" />
+                    <label className="form-label" htmlFor="departure-select">Select location:</label>
                     <select id="departure-select" className="search-select" name="departure-select" onChange={onChangeSelect} required >
                         {mappedDepartureList ? <option value=""> Please select </option> : <option value="">No results</option>}
                         {mappedDepartureList}
                     </select>
                     <div className="date-time-container">
-                        <label className="form-label" htmlFor="departure-date">Date:</label>
+                        <label className="form-label" id="departure-date-label" htmlFor="departure-date">Date:</label>
                         <input className="form-input" type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} max={maxDate} required />
-                        <label className="form-label" htmlFor="departure-time">Time:</label>
+                        <label className="form-label" id="departure-time-label" htmlFor="departure-time">Time:</label>
                         <input className="form-input" type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange} required />
                     </div>
                 </div>
                 <div className="arrival-container">
-                    <label className="form-label" htmlFor="arrival-name">To:</label>
+                    <label className="form-label" id="arrival-label" htmlFor="arrival-name">Arrival:</label>
                     <input className="form-input" id="arrival-name" name="arrivalString" value={search.arrivalString} onChange={onChange} placeholder="Enter your search" />
+                    <label className="form-label" htmlFor="arrival-name">Select location:</label>
                     <select id="arrival-select" className="search-select" name="arrival-select" onChange={onChangeSelect} required >
                         {mappedArrivalList ? <option value=""> Please select </option> : <option value="">No results</option>}
                         {mappedArrivalList}
                     </select>
                     <div className="date-time-container">
-                        <label className="form-label" htmlFor="arrival-date">Date:</label>
+                        <label className="form-label" id="arrival-date-label" htmlFor="arrival-date">Date:</label>
                         <input className="form-input" type="date" id="arrival-date" name="arrivalDate" value={search.arrivalDate} onChange={onChange} min={search.departureDate || dateToday} max={maxDate} required />
-                        <label className="form-label" htmlFor="arrival-time">Time:</label>
+                        <label className="form-label" id="arrival-time-label" htmlFor="arrival-time">Time:</label>
                         <input className="form-input" type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
                     </div>
                 </div>
