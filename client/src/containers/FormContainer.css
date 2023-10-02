@@ -2,7 +2,6 @@
     display: flex;
     background: rgb(8, 55, 62);
     padding: 0px;
-    justify-content: center;
     width: 100%;
     border-color: antiquewhite;
     overflow: scroll;
@@ -31,7 +30,6 @@
 .search-select {
     width: 25rem;
     height: 3rem;
-    margin-left: 10px;
     font-size: 14px;
     align-self: center;
     appearance: none;
@@ -41,10 +39,18 @@
 
 .form-label {
     color:white;
-    min-width: 2.6rem;
     margin-left: 10px;
     align-self:center;
-    padding: 7px;
+    padding: 4px;
+}
+
+#departure-label, #arrival-label {
+    width: 5.2rem;
+    justify-content: end;
+}
+
+#arrival-time-label, #arrival-date-label, #departure-time-label, #departure-date-label {
+    width: 2.6rem;
 }
 
 .form-button {
