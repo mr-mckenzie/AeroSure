@@ -35,7 +35,7 @@ const NavContainer = ({ setGeoObj, savedSearchList, runForecast }) => {
         <div className='nav-container'>
             <div className='nav-link-container'>
                 <a className="nav-link" href="/"> AeroSure </a>
-                <a className="nav-link" href="/about"> About </a>
+                <a className="nav-link" href="#/about"> About </a>
             </div>
             <div className='nav-form'>
                 <form onSubmit={handleSubmit}>

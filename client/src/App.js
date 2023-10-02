@@ -1,5 +1,6 @@
 import { useEffect,useState } from "react";
-import {BrowserRouter as Router, Routes,Route} from "react-router-dom"
+// import {BrowserRouter as Router, Routes,Route} from "react-router-dom"
+import {HashRouter as Router, Routes,Route} from "react-router-dom"
 import NavContainer from "./containers/NavContainer";
 import FooterContainer from "./containers/FooterContainer";
 import Home from "./pages/Home";
@@ -53,7 +54,7 @@ function App() {
     <Router basename={process.env.PUBLIC_URL}>
     <NavContainer savedSearchList={savedSearchList} setGeoObj={setGeoObj} runForecast={runForecast}/>
       <Routes>
-        <Route path="" element={<Home 
+        <Route path="/" element={<Home 
         forecast={forecast}
         geoObj={geoObj}
         setGeoObj={setGeoObj} 
