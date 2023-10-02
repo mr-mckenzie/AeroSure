@@ -1,6 +1,6 @@
 .display-container {
     display: flex;
-    min-height: 74vh;
+    min-height: 70vh;
     justify-content: space-evenly;
     margin: 0;
 }
