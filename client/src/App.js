@@ -51,7 +51,7 @@ function App() {
   })
 
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
     <NavContainer savedSearchList={savedSearchList} setGeoObj={setGeoObj} runForecast={runForecast}/>
       <Routes>
         <Route path="/" element={<Home 
