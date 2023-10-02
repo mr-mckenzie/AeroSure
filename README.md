@@ -8,13 +8,17 @@ The app allows a user to enter the location, date and time of their departure an
 
 The app is available online (without the back-end functionality to save previous flight searches) at https://mr-mckenzie.github.io/Aerosure.
 
-## Example
+## Examples
+
+### Example one - high chance of delay/cancellation
 
 ![A screenshot of AeroSure showing a delayed flight prediction](./client/src/static/images/ReadMeDelayPrediction.jpeg)
 
 In the above flight from Miami to Panama City we can see that the weather conditions are poor in the hour of the scheduled departure (14:00) and for a further hour. Each of these windows has been assigned a high chance of delay/cancellation because of the poor conditions. The weather improves at 16:00 but despite the now-safe take-off conditions, is given a moderate chance of disruption because of the possibility of knock-on delays due to the earlier poor weather. The scheduled arrival time also has a moderate change of disruption due to earlier poor conditions.
 
 We can interpret the forecast as a high possibility of weather-based delay/cancellation for this flight.
+
+### Example two - low chance of delay/cancellation
 
 ![A screenshot of AeroSure showing a non-delayed flight prediction](./client/src/static/images/ReadMeNoDelayPrediction.jpeg)
 
