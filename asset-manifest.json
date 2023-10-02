@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.75f1e50f.css",
-    "main.js": "/static/js/main.8c15e070.js",
-    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
-    "static/media/skyBackground.jpg": "/static/media/skyBackground.fc47cae51eaf05f0d82b.jpg",
-    "static/media/prediction.jpeg": "/static/media/prediction.69af4b52dfd33db8fa1e.jpeg",
-    "static/media/thunderstormIcon.png": "/static/media/thunderstormIcon.f5fc4b48cd3a5fba3a20.png",
-    "static/media/snowIcon.png": "/static/media/snowIcon.4199c3c9bc1557230524.png",
-    "index.html": "/index.html",
-    "main.75f1e50f.css.map": "/static/css/main.75f1e50f.css.map",
-    "main.8c15e070.js.map": "/static/js/main.8c15e070.js.map",
-    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+    "main.css": "/Aerosure/static/css/main.24d08cfb.css",
+    "main.js": "/Aerosure/static/js/main.5895c58c.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/Aerosure/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/skyBackground.jpg": "/Aerosure/static/media/skyBackground.fc47cae51eaf05f0d82b.jpg",
+    "static/media/prediction.jpeg": "/Aerosure/static/media/prediction.69af4b52dfd33db8fa1e.jpeg",
+    "static/media/thunderstormIcon.png": "/Aerosure/static/media/thunderstormIcon.f5fc4b48cd3a5fba3a20.png",
+    "static/media/snowIcon.png": "/Aerosure/static/media/snowIcon.4199c3c9bc1557230524.png",
+    "index.html": "/Aerosure/index.html",
+    "main.24d08cfb.css.map": "/Aerosure/static/css/main.24d08cfb.css.map",
+    "main.5895c58c.js.map": "/Aerosure/static/js/main.5895c58c.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/Aerosure/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.75f1e50f.css",
-    "static/js/main.8c15e070.js"
+    "static/css/main.24d08cfb.css",
+    "static/js/main.5895c58c.js"
   ]
 }
