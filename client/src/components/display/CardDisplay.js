@@ -25,7 +25,7 @@ const CardDisplay = ({ weather }) => {
                     <p>{weatherNow.temp}°C</p>
                     <p>{weatherNow.description}</p>
                 </div>
-                <div id="chance-display">
+                <div className="chance-display">
                     <p>{weatherNow.hour.slice(-5)}</p>
                     <p>{severityString}</p>
                 </div>

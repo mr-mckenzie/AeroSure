@@ -6,7 +6,7 @@ export const getFlights = () => {
 }
 
 export const getFlight = (id) => {
-    return fetch(baseURL+id)
+    return fetch(baseURL + id)
         .then(res => res.json())
 }
 
@@ -16,7 +16,7 @@ export const postFlight = (payload) => {
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }
     })
-    .then(res => res.json())
+        .then(res => res.json())
 }
 
 export const deleteFlight = (id) => {

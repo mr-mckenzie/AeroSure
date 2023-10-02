@@ -5,30 +5,36 @@
     background-color: rgb(14, 94, 106);
     color: white;
     padding:0.5rem;
-    padding: -10px;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .nav-form {
-    margin-right: 1rem;
+    margin: 0.5rem 1rem;
+    align-self: center;
 }
 
 .nav-link-container {
     align-self: center;
-    margin-left: 1rem;
+    margin: 0.5rem;
 }
 
-.nav-link-container a {
-    margin-left: 10px;
+.nav-link-container > a {
+    margin: 0.5rem
 }
 
 .nav-save-select {
-    height: 35px;
+    height: 2rem;
     width: 15rem;
     margin-left: 10px;
+    font-size: 14px;
+    align-self: center;
+    appearance: none;
+    padding-left: 5px;
 }
+
 .nav-saved-button {
     height: 35px;
-    align-self: center;
     margin-left: 10px;
     border-radius: 9px;
     border: none;

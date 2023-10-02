@@ -39,9 +39,9 @@ const NavContainer = ({ setGeoObj, savedSearchList, runForecast }) => {
             </div>
             <div className='nav-form'>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="flight-select">Choose a saved flight:</label>
+                    <label htmlFor="flight-select">Saved flight:</label>
                     <select className="nav-save-select" name="flights" id="flight-select" onChange={onChange}>
-                        <option value="">--Please choose a saved flight--</option>
+                        <option value="">Please select</option>
                         {flightOptions}
                     </select>
                     <input className="nav-saved-button" type="submit" value="Check" />
