@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/AeroSure/static/css/main.fcb8672d.css",
-    "main.js": "/AeroSure/static/js/main.8ab16202.js",
+    "main.js": "/AeroSure/static/js/main.0210f4dc.js",
     "static/js/787.c4e7f8f9.chunk.js": "/AeroSure/static/js/787.c4e7f8f9.chunk.js",
     "static/media/skyBackground.jpg": "/AeroSure/static/media/skyBackground.fc47cae51eaf05f0d82b.jpg",
     "static/media/prediction.jpeg": "/AeroSure/static/media/prediction.69af4b52dfd33db8fa1e.jpeg",
@@ -9,11 +9,11 @@
     "static/media/snowIcon.png": "/AeroSure/static/media/snowIcon.4199c3c9bc1557230524.png",
     "index.html": "/AeroSure/index.html",
     "main.fcb8672d.css.map": "/AeroSure/static/css/main.fcb8672d.css.map",
-    "main.8ab16202.js.map": "/AeroSure/static/js/main.8ab16202.js.map",
+    "main.0210f4dc.js.map": "/AeroSure/static/js/main.0210f4dc.js.map",
     "787.c4e7f8f9.chunk.js.map": "/AeroSure/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fcb8672d.css",
-    "static/js/main.8ab16202.js"
+    "static/js/main.0210f4dc.js"
   ]
 }
