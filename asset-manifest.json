@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.75f1e50f.css",
+    "main.js": "/static/js/main.8c15e070.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/skyBackground.jpg": "/static/media/skyBackground.fc47cae51eaf05f0d82b.jpg",
+    "static/media/prediction.jpeg": "/static/media/prediction.69af4b52dfd33db8fa1e.jpeg",
+    "static/media/thunderstormIcon.png": "/static/media/thunderstormIcon.f5fc4b48cd3a5fba3a20.png",
+    "static/media/snowIcon.png": "/static/media/snowIcon.4199c3c9bc1557230524.png",
+    "index.html": "/index.html",
+    "main.75f1e50f.css.map": "/static/css/main.75f1e50f.css.map",
+    "main.8c15e070.js.map": "/static/js/main.8c15e070.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.75f1e50f.css",
+    "static/js/main.8c15e070.js"
+  ]
+}
