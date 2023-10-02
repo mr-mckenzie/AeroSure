@@ -53,14 +53,14 @@ function App() {
     <Router>
     <NavContainer savedSearchList={savedSearchList} setGeoObj={setGeoObj} runForecast={runForecast}/>
       <Routes>
-        <Route path="/" element={<Home 
+        <Route path="/AeroSure" element={<Home 
         forecast={forecast}
         geoObj={geoObj}
         setGeoObj={setGeoObj} 
         runForecast={runForecast}
         setSavedSearchList={setSavedSearchList}
         />} />
-        <Route path="/about" element={<About/>} />
+        <Route path="/AeroSure/about" element={<About/>} />
       </Routes>
       <FooterContainer />
     </Router>
