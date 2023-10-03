@@ -4,7 +4,7 @@ AeroSure is a React.js app to predict flight disruption due to weather condition
 
 ## Overview
 
-The app allows a user to enter the location, date and time of their departure and arrival. The user is then given with the forecast at, and a few hours after, their scheduled departure and arrival. The forecast gives the weather conditions in each hourly window and a simple prediction for any delay/cancellation.
+The app allows a user to enter the location, date and time of their departure and arrival. The user is then given the forecast at, and a few hours after, their scheduled departure and arrival. The forecast gives the weather conditions in each hourly window and a simple prediction for any delay/cancellation.
 
 The app is available online (without the back-end functionality to save previous flight searches) at https://mr-mckenzie.github.io/Aerosure.
 
