@@ -163,20 +163,30 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
         })
     } 
 
+    const reminderHandler = (event) => {
+        event.preventDefault()
+        const reminder = document.getElementById("reminder")
+        if (document.activeElement.id == "departure-date" || document.activeElement.id == "arrival-date") {
+            reminder.style.display = "block"
+        } else {
+            reminder.style.display = "none"
+        }
+    }
+
     return (
-        <form onSubmit={handleSubmit} className="search-form">
+        <form onSubmit={handleSubmit} className="search-form" onFocus={reminderHandler} >
             <div className="inform-container">
                 <div className="departure-container">
                     <label className="form-label" id="departure-label" htmlFor="departure-name">Departure:</label>
                     <input className="form-input" name="departureString" id="departure-name" value={search.departureString} onChange={onChange} placeholder="Enter your search" />
-                    <label className="form-label" htmlFor="departure-select">Select location:</label>
-                    <select id="departure-select" className="search-select" name="departure-select" onChange={onChangeSelect} required >
+                    <label className="form-label" id="departure-select-label" htmlFor="departure-select">Select location:</label>
+                    <select id="departure-select" className="search-select" name="departure-select" onChange={onChangeSelect} required>
                         {mappedDepartureList ? <option value=""> Please select </option> : <option value="">No results</option>}
                         {mappedDepartureList}
                     </select>
                     <div className="date-time-container">
                         <label className="form-label" id="departure-date-label" htmlFor="departure-date">Date:</label>
-                        <input className="form-input" type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} max={maxDate} required />
+                        <input className="form-input" type="date" id="departure-date" name="departureDate" value={search.departureDate} onChange={onChange} max={maxDate} min={dateToday} required />
                         <label className="form-label" id="departure-time-label" htmlFor="departure-time">Time:</label>
                         <input className="form-input" type="time" id="departure-time" name="departureTime" value={search.departureTime} onChange={onChange} required />
                     </div>
@@ -184,7 +194,7 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
                 <div className="arrival-container">
                     <label className="form-label" id="arrival-label" htmlFor="arrival-name">Arrival:</label>
                     <input className="form-input" id="arrival-name" name="arrivalString" value={search.arrivalString} onChange={onChange} placeholder="Enter your search" />
-                    <label className="form-label" htmlFor="arrival-name">Select location:</label>
+                    <label className="form-label"id="arrival-select-label" htmlFor="arrival-select">Select location:</label>
                     <select id="arrival-select" className="search-select" name="arrival-select" onChange={onChangeSelect} required >
                         {mappedArrivalList ? <option value=""> Please select </option> : <option value="">No results</option>}
                         {mappedArrivalList}
@@ -196,6 +206,7 @@ const FormContainer = ({ setGeoObj, runForecast, setSavedSearchList }) => {
                         <input className="form-input" type="time" id="arrival-time" name="arrivalTime" value={search.arrivalTime} onChange={onChange} required />
                     </div>
                 </div>
+                <p id="reminder">Forecast data is only available for the next 15 days. Please check again closer to your flight if the forecast is unavailable.</p>
             </div>
             <div className="submit-save-container">
                 <div className="submit-container">

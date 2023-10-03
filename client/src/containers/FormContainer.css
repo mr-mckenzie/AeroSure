@@ -5,6 +5,7 @@
     width: 100%;
     border-color: antiquewhite;
     overflow: scroll;
+    justify-content: center;
 }
 
 .inform-container {
@@ -28,7 +29,7 @@
 }
 
 .search-select {
-    width: 25rem;
+    width: 18rem;
     height: 3rem;
     font-size: 14px;
     align-self: center;
@@ -49,8 +50,22 @@
     justify-content: end;
 }
 
+#departure-select-label, #arrival-select-label {
+    width: 5rem;
+    justify-content: end;
+}
+
 #arrival-time-label, #arrival-date-label, #departure-time-label, #departure-date-label {
     width: 2.6rem;
+}
+
+#reminder {
+    text-align: center;
+    display: none;
+    color: aquamarine;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    max-width: 90%;
 }
 
 .form-button {
@@ -96,8 +111,11 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        min-width: 100%;
-        overflow: scroll;
+        width: 100%;
+    }
+
+    .inform-container{
+        width: 100%;
     }
 
     .departure-container, .arrival-container, .submit-save-container {
@@ -114,26 +132,31 @@
         margin: 2px;
         padding: 10px;
     }
+
+    #departure-select-label, #arrival-select-label {
+        width: max-content;
+    }
 }
 
 @media screen and (max-width:768px) {
 
+    #arrival-label {
+        width: fit-content;
+    }
+
     .search-form {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        min-width: 100%;
-        overflow: visible;
+        align-items:baseline;
     }
 
     .departure-container, .arrival-container, .submit-save-container {
         display: flex;
         flex-direction: column;
         margin: 10px;
-        align-items: center;
+        align-items:center;
         justify-content: center;
-        min-width: 100%;
-        overflow: visible;
+        width: 90%;
         padding: 0;
         appearance: none;
         margin: 0;
@@ -150,6 +173,12 @@
         flex-direction: row;
         align-items: center;
         gap: 2rem;
+    }
+
+    #departure-name, #departure-select, #arrival-name, #arrival-select {
+        max-width: 80%;
+        margin: 2px;
+        padding: 10px;
     }
 
 }

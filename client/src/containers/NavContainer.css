@@ -15,6 +15,12 @@
     align-self: center;
 }
 
+.nav-form > form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
 .nav-link-container {
     align-self: center;
     margin: 0.5rem;
@@ -54,4 +60,23 @@
 
 .nav-link:hover {
     color:aquamarine;
+}
+
+@media screen and (max-width:768px) {
+    .nav-container {
+        justify-content: center;
+    }
+
+    .nav-form {
+        width: max-content;
+    }
+
+    #flight-select{
+        width: 6rem;
+    }
+
+    .nav-form > form > label {
+        width: max-content;
+        align-self: center;
+    }
 }
