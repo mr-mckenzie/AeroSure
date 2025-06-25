@@ -28,7 +28,7 @@ In this example flight from Paris to Vienna, the conditions at both the departur
 
 This app is purely an exercise in programming and **should not** be used for predicting any real-life flight delays or cancellations.
 
-We cannot guarantee the accuracy of any predictions made by AeroSure - please **do not** make any decisions based on an AeroSure fligt prediction.
+We cannot guarantee the accuracy of any predictions made by AeroSure - please **do not** make any decisions based on an AeroSure flight prediction.
 
 <!-- ## Set-Up
 
